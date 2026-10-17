@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Modzak — Costumes & chaussures homme · Mohammedia</title>
+<meta name="description" content="Modzak, boutique homme à Mohammedia : costumes haute couture, smokings, chemises et chaussures. Commande WhatsApp, livraison partout au Maroc.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;700&family=Noto+Kufi+Arabic:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0d0c0b;--bg2:#161412;--ink:#f3eee6;--mute:#9a9188;--gold:#c8a463;--line:#2a2622}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.6 Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+[dir=rtl] body,[dir=rtl] .serif,[dir=rtl] h1,[dir=rtl] h2,[dir=rtl] h3{font-family:"Noto Kufi Arabic",Manrope,sans-serif}
+a{color:inherit;text-decoration:none}
+img{display:block;width:100%;height:100%;object-fit:cover}
+.serif{font-family:"Cormorant Garamond",serif;font-weight:500}
+.wrap{max-width:1200px;margin:auto;padding:0 20px}
+.eyebrow{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
+header{position:fixed;inset:0 0 auto;z-index:20;transition:.3s}
+header.solid{background:rgba(13,12,11,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{display:flex;align-items:center;gap:10px;font-family:"Cormorant Garamond",serif;font-size:24px;letter-spacing:.2em}
+.logo b{display:grid;place-items:center;width:38px;height:38px;border:1px solid var(--gold);color:var(--gold);font-size:17px;letter-spacing:0}
+.links{display:flex;gap:28px;font-size:14px}
+.links a:hover{color:var(--gold)}
+.tools{display:flex;gap:10px;align-items:center}
+.lang{border:1px solid var(--line);background:none;color:var(--ink);padding:6px 12px;font:inherit;font-size:13px;cursor:pointer}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#120f0b;padding:13px 22px;font-weight:700;font-size:14px;letter-spacing:.04em;border:0;cursor:pointer;transition:.2s;font-family:inherit}
+.btn:hover{background:#dcbb7c}
+.btn.ghost{background:none;color:var(--ink);border:1px solid var(--ink)}
+.btn.ghost:hover{border-color:var(--gold);color:var(--gold)}
+@media(max-width:860px){.links{display:none}.tools .btn{display:none}}
+.hero{position:relative;min-height:100svh;display:grid;align-items:end}
+.hero>img{position:absolute;inset:0;filter:brightness(.55)}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,var(--bg))}
+.hero .wrap{position:relative;z-index:2;padding-bottom:12vh;width:100%}
+.hero h1{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(46px,8vw,104px);line-height:.95;margin:18px 0 22px}
+.hero h1 i{color:var(--gold)}
+.hero p{max-width:480px;color:#d8d0c4;margin-bottom:30px}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+.trust{border-block:1px solid var(--line);background:var(--bg2)}
+.trust .wrap{display:grid;grid-template-columns:repeat(4,1fr);text-align:center}
+.trust .wrap>div{padding:26px 10px;border-inline-end:1px solid var(--line)}
+.trust strong{display:block;font-family:"Cormorant Garamond",serif;font-size:30px;color:var(--gold);font-weight:500}
+.trust span{font-size:13px;color:var(--mute)}
+@media(max-width:700px){.trust .wrap{grid-template-columns:1fr 1fr}}
+section{padding:110px 0}
+.head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:44px;flex-wrap:wrap}
+.head h2{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(36px,5vw,58px);line-height:1}
+.univ{display:grid;grid-template-columns:2fr 1fr 1fr;grid-auto-rows:280px;gap:14px}
+.card{position:relative;overflow:hidden;background:var(--bg2)}
+.card img{transition:transform .8s}
+.card:hover img{transform:scale(1.06)}
+.card .lab{position:absolute;inset:auto 0 0;padding:22px;background:linear-gradient(transparent,rgba(0,0,0,.85))}
+.card .lab h3{font-family:"Cormorant Garamond",serif;font-size:28px;font-weight:500}
+.card .lab span{font-size:13px;color:var(--gold)}
+.univ .big{grid-row:span 2}
+@media(max-width:800px){.univ{grid-template-columns:1fr 1fr;grid-auto-rows:220px}.univ .big{grid-column:span 2;grid-row:span 1}}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.filters button{background:none;border:1px solid var(--line);color:var(--mute);padding:9px 16px;font:inherit;font-size:13px;cursor:pointer}
+.filters button.on{border-color:var(--gold);color:var(--gold)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px}
+.prod .ph{aspect-ratio:3/4;overflow:hidden;background:var(--bg2);margin-bottom:14px}
+.prod .ph img{transition:transform .6s}
+.prod:hover .ph img{transform:scale(1.05)}
+.prod h4{font-weight:500;font-size:16px}
+.prod p{font-size:13px;color:var(--mute);margin:2px 0 12px}
+.prod a{font-size:13px;font-weight:700;color:var(--gold);border-bottom:1px solid var(--gold);padding-bottom:2px}
+.mar{background:var(--bg2)}
+.mar .wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.mar .pic{aspect-ratio:4/5;overflow:hidden}
+.steps{list-style:none;margin:26px 0 30px;counter-reset:s}
+.steps li{counter-increment:s;display:flex;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.steps li::before{content:"0" counter(s);font-family:"Cormorant Garamond",serif;color:var(--gold);font-size:22px}
+form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+input,select{background:var(--bg);border:1px solid var(--line);color:var(--ink);padding:14px;font:inherit;font-size:14px;width:100%;color-scheme:dark}
+form .btn{grid-column:span 2;justify-content:center}
+@media(max-width:860px){.mar .wrap{grid-template-columns:1fr}form{grid-template-columns:1fr}form .btn{grid-column:auto}}
+.visit{display:grid;grid-template-columns:1fr 1.2fr;gap:40px}
+.hours{width:100%;border-collapse:collapse;margin:20px 0 28px;font-size:15px}
+.hours td{padding:11px 0;border-bottom:1px solid var(--line)}
+.hours td:last-child{text-align:end;color:var(--gold)}
+.hours tr.today td{color:var(--ink);font-weight:700}
+.map{min-height:420px;border:1px solid var(--line);filter:grayscale(1) invert(.92) contrast(.9)}
+.map iframe{width:100%;height:100%;min-height:420px;border:0}
+@media(max-width:860px){.visit{grid-template-columns:1fr}}
+footer{border-top:1px solid var(--line);padding:40px 0 90px;font-size:13px;color:var(--mute)}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.wa{position:fixed;bottom:20px;inset-inline-end:20px;z-index:30;width:58px;height:58px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.wa svg{width:30px;fill:#fff}
+.rv{opacity:0;transform:translateY(30px);transition:1s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+<header id="hd"><div class="wrap nav">
+  <a class="logo" href="#"><b>MZ</b>MODZAK</a>
+  <nav class="links"><a href="#univers" data-i="n1">Univers</a><a href="#catalogue" data-i="n2">Catalogue</a><a href="#mariage" data-i="n3">Mariage</a><a href="#visite" data-i="n4">Boutique</a></nav>
+  <div class="tools"><button class="lang" id="lang">العربية</button><a class="btn" href="https://wa.me/212629942924" data-i="cta">WhatsApp</a></div>
+</div></header>
+
+<section class="hero" style="padding:0">
+  <img src="assets/ig/p12.jpg" alt="Smoking noir Modzak">
+  <div class="wrap">
+    <div class="eyebrow" data-i="h0">Mohammedia · Central Park</div>
+    <h1 data-i="h1">Your way<br>into <i>elegance</i></h1>
+    <p data-i="h2">Costumes haute couture, smokings, chemises et chaussures haut de gamme pour homme. Essayage en boutique, livraison partout au Maroc.</p>
+    <div class="cta"><a class="btn" href="#catalogue" data-i="h3">Voir la collection</a><a class="btn ghost" href="#mariage" data-i="h4">Costume de mariage</a></div>
+  </div>
+</section>
+
+<div class="trust"><div class="wrap">
+  <div><strong>5,0★</strong><span data-i="t1">Avis Google</span></div>
+  <div><strong>1 500+</strong><span data-i="t2">Abonnés Instagram</span></div>
+  <div><strong data-i="t3v">Maroc</strong><span data-i="t3">Livraison partout</span></div>
+  <div><strong>7/7</strong><span data-i="t4">Ouvert jusqu'à 22h30</span></div>
+</div></div>
+
+<section id="univers"><div class="wrap">
+  <div class="head rv"><div><div class="eyebrow" data-i="u0">Nos univers</div><h2 data-i="u1">Tout le vestiaire masculin</h2></div></div>
+  <div class="univ rv">
+    <a class="card big" href="#catalogue" data-f="costumes"><img src="assets/ig/p2.jpg" alt=""><div class="lab"><h3 data-i="c1">Costumes & smokings</h3><span data-i="c1s">Cérémonie · Mariage · Bureau</span></div></a>
+    <a class="card" href="#catalogue" data-f="chemises"><img src="assets/ig/p10.jpg" alt=""><div class="lab"><h3 data-i="c2">Chemises</h3><span>→</span></div></a>
+    <a class="card" href="#catalogue" data-f="polos"><img src="assets/ig/p7.jpg" alt=""><div class="lab"><h3 data-i="c3">Polos</h3><span>→</span></div></a>
+    <a class="card" href="#catalogue" data-f="pantalons"><img src="assets/ig/p5.jpg" alt=""><div class="lab"><h3 data-i="c4">Pantalons</h3><span>→</span></div></a>
+    <a class="card" href="#catalogue" data-f="chaussures"><img src="assets/ig/p8.jpg" alt=""><div class="lab"><h3 data-i="c5">Chaussures</h3><span>→</span></div></a>
+  </div>
+</div></section>
+
+<section id="catalogue" style="padding-top:0"><div class="wrap">
+  <div class="head rv"><div><div class="eyebrow" data-i="k0">Nouveautés en boutique</div><h2 data-i="k1">Catalogue</h2></div>
+    <div class="filters" id="filters"></div></div>
+  <div class="grid" id="grid"></div>
+</div></section>
+
+<section id="mariage" class="mar"><div class="wrap">
+  <div class="pic rv"><img src="assets/ig/p3.jpg" alt="Smoking pailleté"></div>
+  <div class="rv">
+    <div class="eyebrow" data-i="m0">Le grand jour</div>
+    <h2 class="serif" style="font-size:clamp(36px,5vw,56px);line-height:1" data-i="m1">Votre costume de mariage, ajusté pour vous</h2>
+    <ol class="steps">
+      <li data-i="m2">Réservez un créneau d'essayage privé</li>
+      <li data-i="m3">Choix du modèle, du tissu et des accessoires</li>
+      <li data-i="m4">Retouches et ajustements en boutique</li>
+    </ol>
+    <form id="rdv">
+      <input name="nom" required placeholder="Nom">
+      <input name="date" type="date" required>
+      <select name="type"><option data-i="o1">Costume de mariage</option><option data-i="o2">Smoking</option><option data-i="o3">Costume de ville</option></select>
+      <select name="h"><option>11:00–14:00</option><option>14:00–18:00</option><option>18:00–22:00</option></select>
+      <button class="btn" data-i="f2">Réserver mon essayage sur WhatsApp</button>
+    </form>
+  </div>
+</div></section>
+
+<section id="visite"><div class="wrap visit">
+  <div class="rv">
+    <div class="eyebrow" data-i="v0">Nous rendre visite</div>
+    <h2 class="serif" style="font-size:clamp(36px,5vw,56px);line-height:1" data-i="v1">La boutique</h2>
+    <p style="color:var(--mute);margin-top:14px">Central Park, Rue Abdelmoumen n°3, Mohammedia</p>
+    <table class="hours" id="hours"></table>
+    <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn" href="https://maps.app.goo.gl/Q2b422Qmi5J6yWbs5" data-i="v2">Itinéraire</a><a class="btn ghost" href="tel:+212521060592">05 21 06 05 92</a></div>
+  </div>
+  <div class="map rv"><iframe loading="lazy" src="https://maps.google.com/maps?q=Modzak%20Central%20Park%20Mohammedia&z=16&output=embed" title="Carte"></iframe></div>
+</div></section>
+
+<footer><div class="wrap"><span>© 2026 Modzak · Mohammedia</span><span><a href="https://www.instagram.com/modzak.m/">Instagram</a> · <a href="https://web.facebook.com/modzakma">Facebook</a> · WhatsApp 06 29 94 29 24</span></div></footer>
+<a class="wa" href="https://wa.me/212629942924" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.700-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.100c.1.2 2.1 3.2 5.1 4.5 2.5 1 3 .8 3.6.7.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3M12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4C2.7 15.6 2.2 13.8 2.2 12 2.2 6.6 6.6 2.2 12 2.2S21.8 6.6 21.8 12 17.4 21.8 12 21.8M12 0C5.4 0 0 5.4 0 12c0 2.1.6 4.2 1.6 6L0 24l6.2-1.6c1.8 1 3.8 1.5 5.8 1.5 6.6 0 12-5.4 12-12S18.6 0 12 0"/></svg></a>
+
+<script>
+const WA='212629942924',wa=t=>`https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
+const P=[
+ ['costumes','p2','Smoking pailleté noir','Revers satin · gilet assorti'],
+ ['costumes','p11','Costume trois-pièces marron','Coupe ajustée'],
+ ['costumes','p9','Costume beige','Été · cérémonie'],
+ ['costumes','p4','Costume tissu fil','Nouvel arrivage'],
+ ['chemises','p6','Chemise rayée bleue','Col italien'],
+ ['chemises','p10','Chemises unies','Plusieurs coloris'],
+ ['polos','p7','Polos brodés','Plusieurs coloris'],
+ ['pantalons','p5','Pantalon taille haute','Pinces · boucles latérales'],
+ ['chaussures','p8','Sandales cuir','Confort été']
+];
+const CAT={all:['Tout','الكل'],costumes:['Costumes','بدلات'],chemises:['Chemises','قمصان'],polos:['Polos','بولو'],pantalons:['Pantalons','سراويل'],chaussures:['Chaussures','أحذية']};
+let ar=false,cur='all';
+function render(){
+ filters.innerHTML=Object.keys(CAT).map(k=>`<button class="${k==cur?'on':''}" data-k="${k}">${CAT[k][+ar]}</button>`).join('');
+ grid.innerHTML=P.filter(p=>cur=='all'||p[0]==cur).map(p=>`<div class="prod"><div class="ph"><img loading="lazy" src="assets/ig/${p[1]}.jpg" alt="${p[2]}"></div><h4>${p[2]}</h4><p>${p[3]} · ${ar?'السعر عبر واتساب':'Prix sur WhatsApp'}</p><a href="${wa('Bonjour Modzak, je suis intéressé par : '+p[2])}" target="_blank">${ar?'اطلب عبر واتساب':'Commander sur WhatsApp'} →</a></div>`).join('');
+}
+filters.onclick=e=>{if(e.target.dataset.k){cur=e.target.dataset.k;render()}};
+document.querySelectorAll('[data-f]').forEach(a=>a.onclick=()=>{cur=a.dataset.f;render()});
+const H=[['Lundi','الاثنين','11:00–22:30'],['Mardi','الثلاثاء','11:00–22:30'],['Mercredi','الأربعاء','11:00–22:30'],['Jeudi','الخميس','11:00–22:30'],['Vendredi','الجمعة','15:00–22:30'],['Samedi','السبت','11:00–22:30'],['Dimanche','الأحد','15:00–22:30']];
+function hours(){const d=(new Date().getDay()+6)%7;document.getElementById('hours').innerHTML=H.map((h,i)=>`<tr class="${i==d?'today':''}"><td>${h[+ar]}</td><td>${h[2]}</td></tr>`).join('')}
+rdv.onsubmit=e=>{e.preventDefault();const f=new FormData(rdv);open(wa(`Bonjour Modzak, je souhaite réserver un essayage.\nNom : ${f.get('nom')}\nDate : ${f.get('date')}\nCréneau : ${f.get('h')}\nType : ${f.get('type')}`),'_blank')};
+const AR={n1:'عالمنا',n2:'الكتالوج',n3:'الأعراس',n4:'المتجر',cta:'واتساب',h0:'المحمدية · سنترال بارك',h1:'طريقك<br>نحو <i>الأناقة</i>',h2:'بدلات راقية، سموكينغ، قمصان وأحذية فاخرة للرجال. القياس في المتجر والتوصيل لجميع مدن المغرب.',h3:'اكتشف المجموعة',h4:'بدلة العرس',t1:'تقييم غوغل',t2:'متابع على إنستغرام',t3v:'المغرب',t3:'توصيل لكل المدن',t4:'مفتوح حتى 22:30',u0:'عالمنا',u1:'كل ما يحتاجه الرجل',c1:'بدلات وسموكينغ',c1s:'حفلات · أعراس · عمل',c2:'قمصان',c3:'بولو',c4:'سراويل',c5:'أحذية',k0:'جديد المتجر',k1:'الكتالوج',m0:'اليوم الكبير',m1:'بدلة عرسك، مفصلة على مقاسك',m2:'احجز موعد قياس خاص',m3:'اختيار الموديل والقماش والإكسسوارات',m4:'التعديلات في المتجر',o1:'بدلة عرس',o2:'سموكينغ',o3:'بدلة عادية',f2:'احجز موعدي عبر واتساب',v0:'زورونا',v1:'المتجر',v2:'الاتجاهات'};
+const FR={};document.querySelectorAll('[data-i]').forEach(e=>FR[e.dataset.i]=e.innerHTML);
+lang.onclick=()=>{ar=!ar;document.documentElement.dir=ar?'rtl':'ltr';document.documentElement.lang=ar?'ar':'fr';lang.textContent=ar?'Français':'العربية';
+ document.querySelectorAll('[data-i]').forEach(e=>e.innerHTML=(ar?AR:FR)[e.dataset.i]??FR[e.dataset.i]);render();hours()};
+render();hours();
+addEventListener('scroll',()=>hd.classList.toggle('solid',scrollY>40));
+const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('in')),{threshold:.12});
+document.querySelectorAll('.rv').forEach(e=>io.observe(e));
+</script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Modzak · Boutique homme Mohammedia</title>
+<meta name="description" content="Modzak : costumes, chemises, polos et chaussures homme à Mohammedia. Composez votre tenue et commandez sur WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f1ea;--card:#fffdf9;--ink:#1d1a17;--mute:#7a7067;--wood:#b98a5a;--wood2:#e9dccb;--line:#e3d8ca}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.6 Inter,system-ui,sans-serif}
+[dir=rtl] body,[dir=rtl] h1,[dir=rtl] h2,[dir=rtl] h3{font-family:Tajawal,Inter,sans-serif}
+a{color:inherit;text-decoration:none}
+img{display:block;width:100%;height:100%;object-fit:cover}
+h1,h2,h3{font-family:Fraunces,serif;font-weight:400;letter-spacing:-.01em}
+.wrap{max-width:1180px;margin:auto;padding:0 20px}
+.pill{display:inline-block;padding:6px 14px;border-radius:99px;background:var(--wood2);font-size:12px;font-weight:600;color:#6b4d2e}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 24px;border-radius:99px;background:var(--ink);color:#fff;font:600 14px Inter,sans-serif;border:0;cursor:pointer;transition:.2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(29,26,23,.18)}
+.btn.wa{background:#1f9d55}
+.btn.line{background:none;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.bar{background:var(--ink);color:#e9dccb;font-size:12.5px;text-align:center;padding:8px}
+header{position:sticky;top:0;z-index:20;background:rgba(246,241,234,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:.18em}
+.logo img{width:40px;height:40px;border-radius:50%}
+.links{display:flex;gap:26px;font-size:14px;color:var(--mute)}
+.links a:hover{color:var(--ink)}
+.lang{background:none;border:1.5px solid var(--line);border-radius:99px;padding:7px 14px;font:600 13px Inter;cursor:pointer}
+@media(max-width:820px){.links{display:none}}
+.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center;padding:56px 20px 80px}
+.hero h1{font-size:clamp(42px,6.4vw,82px);line-height:1.02;margin:18px 0}
+.hero h1 em{font-style:italic;color:var(--wood)}
+.hero p{color:var(--mute);max-width:460px;margin-bottom:28px;font-size:17px}
+.hero .cta{display:flex;gap:10px;flex-wrap:wrap}
+.stack{position:relative;height:560px}
+.stack .a,.stack .b{position:absolute;border-radius:24px;overflow:hidden;box-shadow:0 30px 60px rgba(60,40,20,.18)}
+.stack .a{inset:0 18% 8% 0}
+.stack .b{width:46%;height:52%;right:0;bottom:0;border:6px solid var(--bg)}
+.badge{position:absolute;left:-10px;bottom:48px;background:var(--card);border-radius:16px;padding:14px 18px;box-shadow:0 14px 34px rgba(0,0,0,.12);font-size:13px}
+.badge b{font-size:22px;font-family:Fraunces,serif}
+@media(max-width:860px){.hero{grid-template-columns:1fr;padding-top:30px}.stack{height:440px}.badge{left:10px}}
+section{padding:90px 0}
+.sh{text-align:center;max-width:640px;margin:0 auto 46px}
+.sh h2{font-size:clamp(34px,4.6vw,54px);line-height:1.08;margin-top:12px}
+.sh p{color:var(--mute);margin-top:10px}
+.rail{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 20px 18px;scrollbar-width:thin}
+.rail .it{flex:0 0 min(300px,78vw);scroll-snap-align:start;background:var(--card);border-radius:22px;overflow:hidden;border:1px solid var(--line)}
+.rail .ph{aspect-ratio:4/5;overflow:hidden}
+.rail .ph img{transition:transform .6s}
+.rail .it:hover img{transform:scale(1.05)}
+.rail .tx{padding:16px 18px 20px}
+.rail .tx small{color:var(--wood);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.1em}
+.rail .tx h3{font-size:21px;margin:4px 0 12px}
+.rail .tx a{font-size:13px;font-weight:600;color:#1f9d55}
+.comp{background:var(--card);border-radius:30px;border:1px solid var(--line);padding:40px;display:grid;grid-template-columns:1.2fr 1fr;gap:40px}
+.step{margin-bottom:24px}
+.step h4{font-size:13px;text-transform:uppercase;letter-spacing:.12em;color:var(--mute);margin-bottom:10px}
+.opts{display:flex;gap:10px;flex-wrap:wrap}
+.opt{display:flex;align-items:center;gap:10px;padding:6px 14px 6px 6px;border-radius:99px;border:1.5px solid var(--line);cursor:pointer;font-size:14px;background:var(--bg);transition:.15s}
+.opt img{width:36px;height:36px;border-radius:50%}
+.opt.on{border-color:var(--ink);background:#fff;font-weight:600}
+.recap{background:var(--bg);border-radius:22px;padding:26px;display:flex;flex-direction:column;gap:14px}
+.thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.thumbs div{aspect-ratio:3/4;border-radius:14px;overflow:hidden;background:var(--wood2)}
+.recap ul{list-style:none;font-size:14px}
+.recap li{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line)}
+.recap li span:last-child{font-weight:600;text-align:end}
+@media(max-width:860px){.comp{grid-template-columns:1fr;padding:22px}}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:28px}
+.box h3{font-size:24px;margin-bottom:10px}
+.box p,.box li{color:var(--mute);font-size:15px}
+.box ul{list-style:none}
+.box li{display:flex;justify-content:space-between;padding:6px 0}
+.box li.t{color:var(--ink);font-weight:600}
+.stars{color:var(--wood);font-size:20px;letter-spacing:2px}
+@media(max-width:860px){.three{grid-template-columns:1fr}}
+.mapw{margin-top:18px;border-radius:26px;overflow:hidden;height:380px;border:1px solid var(--line)}
+.mapw iframe{width:100%;height:100%;border:0}
+footer{padding:40px 0 100px;text-align:center;color:var(--mute);font-size:13px}
+.fab{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:30;box-shadow:0 14px 30px rgba(0,0,0,.25);white-space:nowrap}
+.fab:hover{transform:translateX(-50%)}
+@media(min-width:861px){.fab{display:none}}
+</style>
+</head>
+<body>
+<div class="bar" data-i="bar">Livraison partout au Maroc · Essayage en boutique à Mohammedia</div>
+<header><div class="wrap nav">
+  <a class="logo" href="#"><img src="assets/ig/p0.jpg" alt="Logo Modzak">MODZAK</a>
+  <nav class="links"><a href="#look" data-i="n1">Lookbook</a><a href="#compose" data-i="n2">Composer ma tenue</a><a href="#infos" data-i="n3">Boutique & horaires</a></nav>
+  <button class="lang" id="lang">العربية</button>
+</div></header>
+
+<div class="wrap hero">
+  <div>
+    <span class="pill" data-i="h0">Nouvelle collection automne 2026</span>
+    <h1 data-i="h1">L'élégance masculine, <em>à deux pas</em> de chez vous.</h1>
+    <p data-i="h2">Costumes, chemises, polos et chaussures choisis pièce par pièce dans notre boutique de Central Park, Mohammedia.</p>
+    <div class="cta"><a class="btn" href="#compose" data-i="h3">Composer ma tenue</a><a class="btn line" href="#look" data-i="h4">Voir le lookbook</a></div>
+  </div>
+  <div class="stack">
+    <div class="a"><img src="assets/ig/p11.jpg" alt="Costume Modzak"></div>
+    <div class="b"><img src="assets/ig/p1.jpg" alt="Façade boutique Modzak"></div>
+    <div class="badge"><b>5,0 ★</b><br><span data-i="h5">Note Google</span></div>
+  </div>
+</div>
+
+<section id="look" style="padding-top:20px">
+  <div class="sh wrap"><span class="pill" data-i="l0">Lookbook</span><h2 data-i="l1">Vu en boutique cette semaine</h2><p data-i="l2">Faites défiler, puis commandez la pièce en un message.</p></div>
+  <div class="rail" id="rail"></div>
+</section>
+
+<section id="compose"><div class="wrap">
+  <div class="sh"><span class="pill" data-i="c0">Exclusif</span><h2 data-i="c1">Composez votre tenue</h2><p data-i="c2">Choisissez costume, chemise et chaussures. Nous vous répondons sur WhatsApp avec les tailles et le prix.</p></div>
+  <div class="comp">
+    <div id="steps"></div>
+    <div class="recap">
+      <div class="thumbs" id="thumbs"></div>
+      <ul id="sum"></ul>
+      <a class="btn wa" id="send" target="_blank" style="justify-content:center" data-i="c3">Envoyer ma tenue sur WhatsApp</a>
+    </div>
+  </div>
+</div></section>
+
+<section id="infos" style="padding-top:20px"><div class="wrap">
+  <div class="three">
+    <div class="box"><div class="stars">★★★★★</div><h3 data-i="a1">5,0 sur Google</h3><p data-i="a2">Emplacement réservé aux avis clients (affichés automatiquement depuis Google une fois la fiche revendiquée).</p></div>
+    <div class="box"><h3 data-i="b1">Horaires</h3><ul id="hours"></ul></div>
+    <div class="box"><h3 data-i="d1">Nous trouver</h3><p>Central Park, Rue Abdelmoumen n°3<br>Mohammedia</p><p style="margin:12px 0 18px">WhatsApp 06 29 94 29 24<br>Fixe 05 21 06 05 92</p><a class="btn" href="https://maps.app.goo.gl/Q2b422Qmi5J6yWbs5" data-i="d2">Itinéraire</a></div>
+  </div>
+  <div class="mapw"><iframe loading="lazy" title="Carte" src="https://maps.google.com/maps?q=Modzak%20Central%20Park%20Mohammedia&z=16&output=embed"></iframe></div>
+</div></section>
+
+<footer>© 2026 Modzak · <a href="https://www.instagram.com/modzak.m/">@modzak.m</a> · <a href="https://web.facebook.com/modzakma">Facebook</a></footer>
+<a class="btn wa fab" href="https://wa.me/212629942924" data-i="fab">Commander sur WhatsApp</a>
+
+<script>
+const wa=t=>'https://wa.me/212629942924?text='+encodeURIComponent(t);
+let ar=false,size=50;
+const L=[['p12','Cérémonie','Smoking noir'],['p9','Été','Costume beige'],['p4','Arrivage','Costumes tissu fil'],['p6','Chemises','Chemise rayée bleue'],['p5','Pantalons','Pantalon taille haute'],['p7','Polos','Polos brodés'],['p8','Chaussures','Sandales cuir'],['p11','Ville','Trois-pièces marron']];
+const S=[
+ {k:'Costume',ka:'البدلة',o:[['p2','Smoking pailleté'],['p11','Trois-pièces marron'],['p9','Costume beige'],['p12','Smoking noir']]},
+ {k:'Chemise',ka:'القميص',o:[['p6','Rayée bleue'],['p10','Unie, couleur au choix']]},
+ {k:'Chaussures',ka:'الحذاء',o:[['p8','Sandales cuir'],['p1','Derby ou mocassins (en boutique)']]}
+];
+const sel=[0,0,0];
+function rail(){document.getElementById('rail').innerHTML=L.map(x=>`<div class="it"><div class="ph"><img loading="lazy" src="assets/ig/${x[0]}.jpg" alt="${x[2]}"></div><div class="tx"><small>${x[1]}</small><h3>${x[2]}</h3><a target="_blank" href="${wa('Bonjour Modzak, je veux des infos sur : '+x[2])}">${ar?'اطلب عبر واتساب ←':'Commander sur WhatsApp →'}</a></div></div>`).join('')}
+function comp(){
+ steps.innerHTML=S.map((s,i)=>`<div class="step"><h4>${i+1}. ${ar?s.ka:s.k}</h4><div class="opts">${s.o.map((o,j)=>`<div class="opt ${sel[i]==j?'on':''}" data-s="${i}" data-j="${j}"><img src="assets/ig/${o[0]}.jpg" alt="">${o[1]}</div>`).join('')}</div></div>`).join('')
+  +`<div class="step"><h4>4. ${ar?'المقاس':'Taille'}</h4><div class="opts">${[46,48,50,52,54,56].map(t=>`<div class="opt ${t==size?'on':''}" data-t="${t}" style="padding:8px 16px">${t}</div>`).join('')}</div></div>`;
+ thumbs.innerHTML=S.map((s,i)=>`<div><img src="assets/ig/${s.o[sel[i]][0]}.jpg" alt=""></div>`).join('');
+ sum.innerHTML=S.map((s,i)=>`<li><span>${ar?s.ka:s.k}</span><span>${s.o[sel[i]][1]}</span></li>`).join('')+`<li><span>${ar?'المقاس':'Taille'}</span><span>${size}</span></li><li><span>${ar?'الثمن':'Prix'}</span><span>${ar?'عبر واتساب':'Sur WhatsApp'}</span></li>`;
+ send.href=wa('Bonjour Modzak, voici ma tenue :\n'+S.map((s,i)=>`- ${s.k} : ${s.o[sel[i]][1]}`).join('\n')+`\n- Taille : ${size}\nPouvez-vous me donner le prix et la disponibilité ?`);
+}
+steps.onclick=e=>{const o=e.target.closest('.opt');if(!o)return;if(o.dataset.t)size=+o.dataset.t;else sel[o.dataset.s]=+o.dataset.j;comp()};
+const H=[['Lundi','الاثنين','11:00–22:30'],['Mardi','الثلاثاء','11:00–22:30'],['Mercredi','الأربعاء','11:00–22:30'],['Jeudi','الخميس','11:00–22:30'],['Vendredi','الجمعة','15:00–22:30'],['Samedi','السبت','11:00–22:30'],['Dimanche','الأحد','15:00–22:30']];
+function hrs(){const d=(new Date().getDay()+6)%7;hours.innerHTML=H.map((h,i)=>`<li class="${i==d?'t':''}"><span>${h[+ar]}</span><span>${h[2]}</span></li>`).join('')}
+const AR={bar:'التوصيل لجميع مدن المغرب · القياس في المتجر بالمحمدية',n1:'اللوك بوك',n2:'نسّق لباسك',n3:'المتجر والمواعيد',h0:'مجموعة خريف 2026',h1:'الأناقة الرجالية، <em>قريبة منك</em>.',h2:'بدلات، قمصان، بولو وأحذية مختارة بعناية في متجرنا بسنترال بارك، المحمدية.',h3:'نسّق لباسك',h4:'شاهد اللوك بوك',h5:'تقييم غوغل',l0:'لوك بوك',l1:'جديد المتجر هذا الأسبوع',l2:'تصفح واطلب القطعة برسالة واحدة.',c0:'حصري',c1:'نسّق لباسك بنفسك',c2:'اختر البدلة والقميص والحذاء، ونرد عليك عبر واتساب بالمقاسات والثمن.',c3:'أرسل اختياري عبر واتساب',a1:'5,0 على غوغل',a2:'مكان مخصص لآراء الزبائن (تُعرض تلقائياً من غوغل).',b1:'أوقات العمل',d1:'العنوان',d2:'الاتجاهات',fab:'اطلب عبر واتساب'};
+const FR={};document.querySelectorAll('[data-i]').forEach(e=>FR[e.dataset.i]=e.innerHTML);
+lang.onclick=()=>{ar=!ar;document.documentElement.dir=ar?'rtl':'ltr';document.documentElement.lang=ar?'ar':'fr';lang.textContent=ar?'Français':'العربية';document.querySelectorAll('[data-i]').forEach(e=>e.innerHTML=(ar?AR:FR)[e.dataset.i]??FR[e.dataset.i]);rail();comp();hrs()};
+rail();comp();hrs();
+</script>
+</body>
+</html>
