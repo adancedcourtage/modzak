@@ -153,7 +153,7 @@ h1,h2,h3,h4,p{margin:0}
 /* footer */
 .ft{background:var(--ink);color:var(--paper);padding:70px 0 26px}
 .ft .cols{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px}
-.ft h4{font-size:13px;color:var(--olive);margin-bottom:12px;font-weight:600}
+.ft h2{font-size:13px;color:var(--olive);margin-bottom:12px;font-weight:600}
 .ft p,.ft a{font-size:14px;color:#d2d1c5;display:block;line-height:2}
 .ft a:hover{color:var(--paper)}
 .ft .word{font:400 clamp(80px,21vw,320px)/.8 Anton,sans-serif;color:var(--olive);margin:60px 0 24px;letter-spacing:-.02em;white-space:nowrap;overflow:hidden}

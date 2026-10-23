@@ -45,7 +45,7 @@ const PRODUCTS = [
 ];
 const CATS = { all:['Tout','الكل'], costumes:['Costumes','بدلات'], chemises:['Chemises','قمصان'], polos:['Polos','بولو'], pantalons:['Pantalons','سراويل'], chaussures:['Chaussures','أحذية'] };
 
-let lang = store.get('mz-lang', 'fr');
+let lang = store.get('mz-lang', 'fr') === 'ar' ? 'ar' : 'fr';
 let lenis = null;
 const t = (fr, ar) => lang === 'ar' ? ar : fr;
 const wa = text => `https://wa.me/${WA}?text=${encodeURIComponent(text)}`;
@@ -75,10 +75,10 @@ function chrome() {
   document.body.insertAdjacentHTML('beforeend', `
   <footer class="ft"><div class="wrap">
     <div class="cols">
-      <div><h4>Modzak</h4><p>${t('Costumes, smokings, chemises et chaussures pour homme. Livraison partout au Maroc.','بدلات، سموكينغ، قمصان وأحذية رجالية. التوصيل لجميع مدن المغرب.')}</p></div>
-      <div><h4>${t('Pages','الصفحات')}</h4>${NAV.map(n=>`<a href="${n[0]}">${t(n[1],n[2])}</a>`).join('')}</div>
-      <div><h4>${t('Contact','اتصل بنا')}</h4><a href="https://wa.me/${WA}" dir="ltr">WhatsApp 06 29 94 29 24</a><a href="tel:+212521060592" dir="ltr">05 21 06 05 92</a><a href="https://www.instagram.com/modzak.m/" target="_blank" rel="noopener">Instagram</a><a href="https://web.facebook.com/modzakma" target="_blank" rel="noopener">Facebook</a></div>
-      <div><h4>${t('Adresse','العنوان')}</h4><p>${t('Central Park, Rue Abdelmoumen n°3, Mohammedia','سنترال بارك، شارع عبد المومن رقم 3، المحمدية')}</p></div>
+      <div><h2>Modzak</h2><p>${t('Costumes, smokings, chemises et chaussures pour homme. Livraison partout au Maroc.','بدلات، سموكينغ، قمصان وأحذية رجالية. التوصيل لجميع مدن المغرب.')}</p></div>
+      <div><h2>${t('Pages','الصفحات')}</h2>${NAV.map(n=>`<a href="${n[0]}">${t(n[1],n[2])}</a>`).join('')}</div>
+      <div><h2>${t('Contact','اتصل بنا')}</h2><a href="https://wa.me/${WA}" dir="ltr">WhatsApp 06 29 94 29 24</a><a href="tel:+212521060592" dir="ltr">05 21 06 05 92</a><a href="https://www.instagram.com/modzak.m/" target="_blank" rel="noopener">Instagram</a><a href="https://web.facebook.com/modzakma" target="_blank" rel="noopener">Facebook</a></div>
+      <div><h2>${t('Adresse','العنوان')}</h2><p>${t('Central Park, Rue Abdelmoumen n°3, Mohammedia','سنترال بارك، شارع عبد المومن رقم 3، المحمدية')}</p></div>
     </div>
     <div class="word" aria-hidden="true">MODZAK</div>
     <div class="base"><span>© ${new Date().getFullYear()} Modzak</span><span>${t('Your way into elegance','طريقك نحو الأناقة')}</span></div>
@@ -109,7 +109,9 @@ function applyLang() {
 }
 
 /* ---------- sélection (envoyée en un message WhatsApp) ---------- */
-let sel = store.get('mz-sel', []).filter(s => PRODUCTS.some(p => p.id === s.id));
+let sel = (Array.isArray(store.get('mz-sel', [])) ? store.get('mz-sel', []) : [])
+  .filter(s => s && typeof s === 'object' && PRODUCTS.some(p => p.id === s.id))
+  .map(s => ({ id: s.id, size: PRODUCTS.find(p => p.id === s.id).sizes.map(String).includes(String(s.size)) ? String(s.size) : '' }));
 const byId = id => PRODUCTS.find(p => p.id === id);
 const isSaved = id => sel.some(s => s.id === id);
 function saveSel() { store.set('mz-sel', sel); updateCount(true); renderDrawer(); document.querySelectorAll('.save[data-id]').forEach(b => b.setAttribute('aria-pressed', isSaved(b.dataset.id))) }

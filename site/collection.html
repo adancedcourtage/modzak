@@ -1,7 +1,12 @@
 <!doctype html>
 <html lang="fr" dir="ltr">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ https://cdn.jsdelivr.net/npm/lenis@1.1.13/; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; frame-src https://maps.google.com https://www.google.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://wa.me; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="icon" type="image/png" sizes="48x48" href="favicon.png"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="manifest" href="site.webmanifest">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Collection · Modzak Mohammedia</title>
 <meta property="og:type" content="website"><meta property="og:site_name" content="Modzak"><meta property="og:locale" content="fr_MA">
 <meta property="og:title" content="Collection · Modzak Mohammedia"><meta property="og:description" content="Costumes, smokings, chemises, polos, pantalons et chaussures homme chez Modzak à Mohammedia. Choisissez votre taille et commandez sur WhatsApp.">
@@ -11,7 +16,7 @@
 <meta name="theme-color" content="#f3efe5">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;600;700&family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/site.css?v=4">
+<link rel="stylesheet" href="css/site.css?v=6">
 <style>
 .intro{padding:150px var(--pad) 40px;display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:end;max-width:1440px;margin:auto}
 .intro h1{font-size:clamp(64px,10vw,170px)}
@@ -40,6 +45,8 @@
 .help .wrap{display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap}
 .help h2{font-size:clamp(38px,5vw,74px);max-width:16ch}
 </style>
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://adancedcourtage.github.io/modzak/site/"}, {"@type": "ListItem", "position": 2, "name": "Collection", "item": "https://adancedcourtage.github.io/modzak/site/collection.html"}]}</script>
 </head>
 <body data-page="collection">
 <main>
@@ -54,6 +61,7 @@
   </div></div>
 
   <section class="catalog">
+    <h2 class="sr" data-fr="Les pièces" data-ar="القطع">Les pièces</h2>
     <div class="products" id="grid" aria-live="polite"></div>
     <p class="none" id="none" hidden></p>
   </section>
@@ -64,67 +72,9 @@
   </div></section>
 </main>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="js/site.js?v=4"></script>
-<script>
-(() => {
-const { PRODUCTS, CATS, card, t } = MZ;
-const grid = document.getElementById('grid'), tabs = document.getElementById('tabs'), ink = document.getElementById('ink'), q = document.getElementById('q'), none = document.getElementById('none');
-let cat = new URLSearchParams(location.search).get('c') || 'all', term = '';
-if (!CATS[cat]) cat = 'all';
-
-function drawTabs() {
-  tabs.querySelectorAll('button').forEach(b => b.remove());
-  Object.keys(CATS).forEach(k => {
-    const n = k === 'all' ? PRODUCTS.length : PRODUCTS.filter(p => p.cat === k).length;
-    tabs.insertAdjacentHTML('beforeend', `<button data-c="${k}" aria-pressed="${k === cat}">${CATS[k][MZ.lang() === 'ar' ? 1 : 0]}<sup>${n}</sup></button>`);
-  });
-  moveInk();
-}
-function moveInk() {
-  const b = tabs.querySelector(`[data-c="${cat}"]`); if (!b) return;
-  ink.style.width = b.offsetWidth + 'px'; ink.style.transform = `translateX(${b.offsetLeft}px)`;
-}
-function drawGrid() { grid.innerHTML = PRODUCTS.map(card).join(''); filter(false) }
-
-/* filtre animé : chaque carte glisse de son ancienne place à la nouvelle */
-function filter(animate = true) {
-  const cards = [...grid.children];
-  const before = new Map(cards.map(c => [c, c.getBoundingClientRect()]));
-  const s = term.trim().toLowerCase();
-  let shown = 0;
-  cards.forEach(c => {
-    const p = PRODUCTS.find(x => x.id === c.dataset.id);
-    const ok = (cat === 'all' || p.cat === cat) && (!s || (p.fr + ' ' + p.ar + ' ' + p.cat).toLowerCase().includes(s));
-    c.classList.toggle('out', !ok); if (ok) shown++;
-  });
-  none.hidden = shown > 0;
-  if (!shown) { none.textContent = `${t('Aucune pièce ne correspond à','لا توجد قطعة تطابق')} « ${term} ». `; none.insertAdjacentHTML('beforeend', `<button id="reset">${t('Tout afficher','عرض الكل')}</button>`) }
-  if (!animate || MZ.reduce || !window.gsap) return;
-  cards.filter(c => !c.classList.contains('out')).forEach((c, i) => {
-    const a = before.get(c), b = c.getBoundingClientRect();
-    if (a.width === 0) gsap.fromTo(c, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: .6, delay: i * .04, ease: 'power3.out', clearProps: 'all' });
-    else gsap.fromTo(c, { x: a.left - b.left, y: a.top - b.top }, { x: 0, y: 0, duration: .7, ease: 'power3.inOut', clearProps: 'transform' });
-  });
-}
-
-tabs.addEventListener('click', e => {
-  const b = e.target.closest('[data-c]'); if (!b) return;
-  cat = b.dataset.c; tabs.querySelectorAll('[data-c]').forEach(x => x.setAttribute('aria-pressed', x === b)); moveInk(); filter();
-  history.replaceState(null, '', cat === 'all' ? location.pathname : `?c=${cat}`);
-});
-let timer; q.addEventListener('input', () => { clearTimeout(timer); timer = setTimeout(() => { term = q.value; filter() }, 160) });
-none.addEventListener('click', e => { if (e.target.id === 'reset') { term = ''; q.value = ''; cat = 'all'; drawTabs(); filter() } });
-addEventListener('resize', moveInk);
-document.addEventListener('mz:lang', () => { drawTabs(); drawGrid() });
-
-/* la barre de filtres remonte quand l'en-tête se cache */
-addEventListener('scroll', () => document.body.classList.toggle('hd-hidden', !!document.querySelector('.hd.hide')), { passive: true });
-
-drawTabs(); drawGrid();
-document.fonts?.ready.then(moveInk);
-})();
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" integrity="sha384-B2WBjDzEjJpYvhmi2UyEn7rektqkf5suS6sNoyyrf0EBAwBHdkiXxIlU0V5Ru2ed" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="js/site.js?v=6"></script>
+<script src="js/collection.js?v=6"></script>
 </body>
 </html>
