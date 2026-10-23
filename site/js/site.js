@@ -87,8 +87,8 @@ function chrome() {
 function once() {
   document.body.insertAdjacentHTML('beforeend', `
   <div class="scrim" id="scrim"></div>
-  <aside class="drawer" id="drawer" aria-hidden="true" aria-labelledby="dt"></aside>
-  <div class="qv" id="qv" role="dialog" aria-modal="true" aria-hidden="true"></div>
+  <aside class="drawer" id="drawer" aria-hidden="true" aria-labelledby="dt" data-lenis-prevent></aside>
+  <div class="qv" id="qv" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="qvt" data-lenis-prevent></div>
   <div class="toast" id="toast" role="status"></div>
   <div class="cursor" id="cursor" aria-hidden="true"></div>
   <a class="wa-float" href="https://wa.me/${WA}" target="_blank" rel="noopener" aria-label="WhatsApp">${ICON.wa}</a>`);
@@ -99,6 +99,8 @@ function setTexts() {
   document.documentElement.lang = lang; document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
   document.querySelectorAll('[data-fr]').forEach(el => { el.innerHTML = (lang === 'ar' ? el.dataset.ar : el.dataset.fr) ?? el.dataset.fr });
   document.querySelectorAll('[data-ph-fr]').forEach(el => { el.placeholder = lang === 'ar' ? el.dataset.phAr : el.dataset.phFr });
+  document.querySelectorAll('[data-al-fr]').forEach(el => el.setAttribute('aria-label', lang === 'ar' ? el.dataset.alAr : el.dataset.alFr));
+  document.querySelectorAll('img[data-alt-ar]').forEach(el => { el.dataset.altFr ??= el.alt; el.alt = lang === 'ar' ? el.dataset.altAr : el.dataset.altFr });
 }
 function applyLang() {
   setTexts(); chrome(); bindChrome(); updateCount(); renderDrawer(); splitTitle(true);
@@ -141,7 +143,7 @@ function quickView(id) {
   const q = document.getElementById('qv');
   q.innerHTML = `<button class="x" data-close aria-label="${t('Fermer','إغلاق')}">×</button>
   <div class="pic"><img id="qvimg" src="${src(p.id,1)}" alt="${t(p.fr,p.ar)}">${p.gal ? `<div class="thumbs" role="group" aria-label="${t('Photos','الصور')}">${p.gal.map((g,i)=>`<button data-g="${g}" aria-pressed="${i===0}" aria-label="${t('Photo','صورة')} ${i+1}"><img src="${src(g)}" alt=""></button>`).join('')}</div>` : ''}</div>
-  <div class="body"><span class="kicker">${CATS[p.cat][lang==='ar'?1:0]}</span><h2 class="display">${t(p.fr,p.ar)}</h2><p class="lead">${t(p.dfr,p.dar)}</p>
+  <div class="body"><span class="kicker">${CATS[p.cat][lang==='ar'?1:0]}</span><h2 class="display" id="qvt">${t(p.fr,p.ar)}</h2><p class="lead">${t(p.dfr,p.dar)}</p>
   <div><p style="font-size:13px;font-weight:600;margin-bottom:8px">${t('Choisissez votre taille','اختر مقاسك')}</p><div class="sizes">${p.sizes.map(z=>`<button aria-pressed="false" data-z="${z}">${z}</button>`).join('')}</div></div>
   <p style="font-size:14px">${t('Prix sur WhatsApp. Essayage possible en boutique.','الثمن عبر واتساب. القياس ممكن في المتجر.')}</p>
   <div class="row"><a class="btn" id="qvwa" target="_blank" rel="noopener">${t('Commander sur WhatsApp','اطلب عبر واتساب')} ${ICON.arrow}</a><button class="btn alt" id="qvsave">${t('Ajouter à ma sélection','أضف إلى اختياراتي')}</button></div></div>`;
@@ -185,6 +187,8 @@ function setNav(open) {
   document.body.classList.toggle('nav-open', open);
   document.getElementById('burger')?.setAttribute('aria-expanded', open);
   const m = document.getElementById('menu'); if (m) m.inert = mobile.matches && !open;
+  document.querySelectorAll('main,.ft,.wa-float').forEach(x => x.inert = open);
+  document.documentElement.style.overflow = open ? 'hidden' : '';
   open ? lenis?.stop() : lenis?.start();
 }
 mobile.addEventListener('change', () => setNav(false));
@@ -201,7 +205,7 @@ document.addEventListener('click', e => {
   if (el.matches('.save')) { e.preventDefault(); toggle(el.dataset.id) }
   else if (el.dataset.qv) quickView(el.dataset.qv);
   else if (el.matches('[data-close]')) closeLayers();
-  else if (el.dataset.rm) { sel = sel.filter(s => s.id !== el.dataset.rm); saveSel() }
+  else if (el.dataset.rm) { sel = sel.filter(s => s.id !== el.dataset.rm); saveSel(); (document.querySelector('#drawer .rm') || document.querySelector('#drawer .x'))?.focus() }
   else if (el.matches('a[href$=".html"]') && !e.metaKey && !e.ctrlKey && el.target !== '_blank' && !reduce) {
     e.preventDefault(); const c = document.createElement('div'); c.className = 'curtain in'; c.innerHTML = '<b>MZ</b>'; document.body.append(c);
     setTimeout(() => location.href = el.getAttribute('href'), 560);

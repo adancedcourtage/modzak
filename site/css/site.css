@@ -179,3 +179,16 @@ h1,h2,h3,h4,p{margin:0}
 .qv .thumbs button{width:56px;height:72px;border:2px solid transparent;background:var(--paper);overflow:hidden;transition:border-color .2s}
 .qv .thumbs button[aria-pressed=true]{border-color:var(--ink)}
 .qv .pic>img{object-fit:contain;background:var(--paper2)}
+/* menu mobile ouvert : l'en-tête ne doit plus créer de cadre (transform/backdrop-filter piègent position:fixed) */
+.nav-open .hd{transform:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;background:transparent!important;border-color:transparent!important}
+@media(max-width:860px){.menu{height:100dvh}}
+@media(max-width:860px){
+  .nav-open .hd,.nav-open .hd .chip{color:var(--paper)}
+  .nav-open .hd .chip{border-color:var(--paper)}
+  .brand small{letter-spacing:.12em;white-space:nowrap}
+  .tools{gap:6px}
+  .chip{padding:0 10px}
+}
+@media(max-width:380px){.brand{font-size:19px;letter-spacing:.14em}.brand small{font-size:7.5px}}
+.menu a{padding:10px 0}
+.drawer .empty a{display:inline-block;padding:10px 0}
