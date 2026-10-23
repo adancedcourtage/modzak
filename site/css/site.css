@@ -173,3 +173,9 @@ h1,h2,h3,h4,p{margin:0}
 :is([data-page=mariage],[data-page=boutique]) .hd:not(.scrolled){color:var(--paper)}
 :is([data-page=mariage],[data-page=boutique]) .hd:not(.scrolled) .chip,:is([data-page=mariage],[data-page=boutique]) .hd:not(.scrolled) .burger{border-color:var(--paper)}
 :is([data-page=mariage],[data-page=boutique]) .hd:not(.scrolled) .burger span{background:var(--paper)}
+/* galerie de l'aperçu produit */
+.qv .pic{position:relative}
+.qv .thumbs{position:absolute;inset:auto 12px 12px;display:flex;gap:8px}
+.qv .thumbs button{width:56px;height:72px;border:2px solid transparent;background:var(--paper);overflow:hidden;transition:border-color .2s}
+.qv .thumbs button[aria-pressed=true]{border-color:var(--ink)}
+.qv .pic>img{object-fit:contain;background:var(--paper2)}

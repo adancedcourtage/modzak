@@ -2,6 +2,7 @@
 (() => {
 const WA = '212629942924';
 const IMG = '../assets/ig/';
+const src = (id, big) => id[0] === 'c' ? `../assets/client/${id}${big ? '' : '-s'}.jpg` : `${IMG}${id}.jpg`;
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const store = {
   get(k, d) { try { return JSON.parse(localStorage.getItem(k)) ?? d } catch { return d } },
@@ -10,6 +11,27 @@ const store = {
 
 /* Catalogue : pas de prix, ils sont donnés sur WhatsApp */
 const PRODUCTS = [
+  { id:'c27', cat:'costumes', gal:['c27','c31','c19'], fr:'Costume bleu roi', ar:'بدلة زرقاء ملكية', dfr:'Veste deux boutons, pochette blanche. Une couleur qui se remarque, pour les fêtes et les cérémonies.', dar:'سترة بزرين ومنديل أبيض. لون لافت للحفلات والمناسبات.', sizes:[46,48,50,52,54,56] },
+  { id:'c21', cat:'costumes', gal:['c21','c24','c30'], fr:'Costume bleu marine', ar:'بدلة كحلية', dfr:'Le costume qui va partout : bureau, réunion, mariage d’un ami.', dar:'البدلة التي تصلح لكل مكان: العمل، الاجتماعات، أعراس الأصدقاء.', sizes:[46,48,50,52,54,56] },
+  { id:'c28', cat:'costumes', gal:['c28','c22','c25'], fr:'Costume gris clair', ar:'بدلة رمادية فاتحة', dfr:'Gris clair, coupe ajustée. Se porte avec une cravate bordeaux ou sans cravate.', dar:'رمادي فاتح بقصة مضبوطة، مع ربطة عنق خمرية أو بدونها.', sizes:[46,48,50,52,54,56] },
+  { id:'c29', cat:'costumes', gal:['c29','c26'], fr:'Costume noir', ar:'بدلة سوداء', dfr:'Noir intense. Pour les soirées et les grandes occasions.', dar:'أسود عميق للسهرات والمناسبات الكبيرة.', sizes:[46,48,50,52,54,56] },
+  { id:'c23', cat:'costumes', gal:['c23','c18','c20'], fr:'Costume taupe', ar:'بدلة بلون التوب', dfr:'Taupe clair, élégant en journée et en été.', dar:'لون توب فاتح، أنيق نهاراً وفي الصيف.', sizes:[46,48,50,52,54,56] },
+  { id:'c01', cat:'chaussures', fr:'Mocassin cuir cognac', ar:'موكاسان جلد كونياك', dfr:'Cuir lisse cognac, semelle cousue.', dar:'جلد أملس بلون الكونياك.', sizes:[39,40,41,42,43,44,45] },
+  { id:'c10', cat:'chaussures', fr:'Mocassin marron foncé', ar:'موكاسان بني داكن', dfr:'Cuir marron foncé, forme allongée.', dar:'جلد بني داكن بشكل ممدود.', sizes:[39,40,41,42,43,44,45] },
+  { id:'c03', cat:'chaussures', fr:'Mocassin noir', ar:'موكاسان أسود', dfr:'Cuir noir, se porte avec un costume comme avec un jean.', dar:'جلد أسود يُلبس مع البدلة أو الجينز.', sizes:[39,40,41,42,43,44,45] },
+  { id:'c09', cat:'chaussures', fr:'Mocassin noir uni', ar:'موكاسان أسود سادة', dfr:'Cuir noir sans couture apparente, très sobre.', dar:'جلد أسود بسيط وأنيق.', sizes:[39,40,41,42,43,44,45] },
+  { id:'c04', cat:'chaussures', fr:'Mocassin noir verni à mors', ar:'موكاسان أسود لامع بإبزيم', dfr:'Cuir verni et mors métal. Pour les soirées.', dar:'جلد لامع بإبزيم معدني للسهرات.', sizes:[39,40,41,42,43,44,45] },
+  { id:'c16', cat:'chaussures', fr:'Richelieu cognac', ar:'ريشيليو كونياك', dfr:'Lacets fermés, cuir cognac patiné.', dar:'أربطة مغلقة وجلد كونياك.', sizes:[39,40,41,42,43,44,45] },
+  { id:'c14', cat:'chaussures', fr:'Richelieu chocolat', ar:'ريشيليو بني شوكولا', dfr:'Cuir brun foncé, bout arrondi.', dar:'جلد بني داكن بمقدمة دائرية.', sizes:[39,40,41,42,43,44,45] },
+  { id:'c07', cat:'chaussures', fr:'Richelieu marron bout droit', ar:'ريشيليو بني بمقدمة مستقيمة', dfr:'Bout droit, le classique du costume.', dar:'مقدمة مستقيمة، الكلاسيكي مع البدلة.', sizes:[39,40,41,42,43,44,45] },
+  { id:'c05', cat:'chaussures', fr:'Richelieu marron perforé', ar:'ريشيليو بني مثقب', dfr:'Bout fleuri perforé, cuir marron.', dar:'مقدمة مثقبة وجلد بني.', sizes:[39,40,41,42,43,44,45] },
+  { id:'c12', cat:'chaussures', fr:'Derby cognac bout droit', ar:'ديربي كونياك', dfr:'Lacets ouverts, plus confortable au quotidien.', dar:'أربطة مفتوحة، مريح لكل يوم.', sizes:[39,40,41,42,43,44,45] },
+  { id:'c15', cat:'chaussures', fr:'Richelieu noir', ar:'ريشيليو أسود', dfr:'Cuir noir lisse, la chaussure du mariage.', dar:'جلد أسود أملس، حذاء العرس.', sizes:[39,40,41,42,43,44,45] },
+  { id:'c08', cat:'chaussures', fr:'Richelieu noir bout droit', ar:'ريشيليو أسود بمقدمة مستقيمة', dfr:'Bout droit, cuir noir.', dar:'مقدمة مستقيمة وجلد أسود.', sizes:[39,40,41,42,43,44,45] },
+  { id:'c13', cat:'chaussures', fr:'Richelieu noir mat', ar:'ريشيليو أسود مطفي', dfr:'Cuir noir mat, bout droit.', dar:'جلد أسود مطفي.', sizes:[39,40,41,42,43,44,45] },
+  { id:'c06', cat:'chaussures', fr:'Richelieu noir perforé', ar:'ريشيليو أسود مثقب', dfr:'Bout fleuri perforé, cuir noir.', dar:'مقدمة مثقبة وجلد أسود.', sizes:[39,40,41,42,43,44,45] },
+  { id:'c17', cat:'chaussures', fr:'Derby noir', ar:'ديربي أسود', dfr:'Lacets ouverts, cuir noir.', dar:'أربطة مفتوحة وجلد أسود.', sizes:[39,40,41,42,43,44,45] },
+  { id:'c11', cat:'chaussures', fr:'Richelieu gris anthracite', ar:'ريشيليو رمادي داكن', dfr:'Cuir anthracite, change du noir.', dar:'جلد رمادي داكن بديل للأسود.', sizes:[39,40,41,42,43,44,45] },
   { id:'p2',  cat:'costumes',   fr:'Smoking pailleté',      ar:'سموكينغ لامع',     dfr:'Veste brodée, revers satin, gilet assorti. La pièce des grands soirs.', dar:'سترة مطرزة بياقة ساتان مع صدرية. قطعة السهرات الكبيرة.', sizes:[46,48,50,52,54,56] },
   { id:'p12', cat:'costumes',   fr:'Smoking noir',          ar:'سموكينغ أسود',     dfr:'Col châle, nœud papillon. Le classique du mariage.', dar:'ياقة شال وربطة فراشة. كلاسيكية الأعراس.', sizes:[46,48,50,52,54,56] },
   { id:'p9',  cat:'costumes',   fr:'Costume beige',         ar:'بدلة بيج',         dfr:'Coupe droite, tissu léger. Pour les cérémonies d’été.', dar:'قصة مستقيمة وقماش خفيف. لمناسبات الصيف.', sizes:[46,48,50,52,54] },
@@ -103,7 +125,7 @@ function selMessage() {
 function renderDrawer() {
   const d = document.getElementById('drawer');
   d.innerHTML = `<header><h2 id="dt">${t('Ma sélection','اختياراتي')}</h2><button class="x" data-close aria-label="${t('Fermer','إغلاق')}">×</button></header>
-  <div class="list">${sel.length ? sel.map(s => { const p = byId(s.id); return `<div class="item"><img src="${IMG}${p.id}.jpg" alt=""><div><b>${t(p.fr,p.ar)}</b><select data-size="${p.id}" aria-label="${t('Taille','المقاس')}"><option value="">${t('Taille ?','المقاس؟')}</option>${p.sizes.map(z=>`<option ${String(z)===String(s.size)?'selected':''}>${z}</option>`).join('')}</select></div><button class="rm" data-rm="${p.id}">${t('Retirer','حذف')}</button></div>` }).join('')
+  <div class="list">${sel.length ? sel.map(s => { const p = byId(s.id); return `<div class="item"><img src="${src(p.id)}" alt=""><div><b>${t(p.fr,p.ar)}</b><select data-size="${p.id}" aria-label="${t('Taille','المقاس')}"><option value="">${t('Taille ?','المقاس؟')}</option>${p.sizes.map(z=>`<option ${String(z)===String(s.size)?'selected':''}>${z}</option>`).join('')}</select></div><button class="rm" data-rm="${p.id}">${t('Retirer','حذف')}</button></div>` }).join('')
     : `<p class="empty">${t('Votre sélection est vide. Touchez le cœur sur une pièce pour l’ajouter, puis envoyez tout en un message.','اختياراتك فارغة. اضغط على القلب لإضافة قطعة ثم أرسل الكل في رسالة واحدة.')}<br><br><a href="collection.html">${t('Voir la collection','شاهد المجموعة')}</a></p>`}</div>
   ${sel.length ? `<footer><a class="btn" target="_blank" rel="noopener" href="${wa(selMessage())}">${t('Envoyer ma sélection sur WhatsApp','أرسل اختياراتي عبر واتساب')}</a><p style="font-size:13px;color:var(--muted)">${t('Le prix et la disponibilité vous sont confirmés par message.','نؤكد لك الثمن والتوفر في رسالة.')}</p></footer>` : ''}`;
 }
@@ -118,13 +140,14 @@ function quickView(id) {
   const p = byId(id); let size = '';
   const q = document.getElementById('qv');
   q.innerHTML = `<button class="x" data-close aria-label="${t('Fermer','إغلاق')}">×</button>
-  <div class="pic"><img src="${IMG}${p.id}.jpg" alt="${t(p.fr,p.ar)}"></div>
+  <div class="pic"><img id="qvimg" src="${src(p.id,1)}" alt="${t(p.fr,p.ar)}">${p.gal ? `<div class="thumbs" role="group" aria-label="${t('Photos','الصور')}">${p.gal.map((g,i)=>`<button data-g="${g}" aria-pressed="${i===0}" aria-label="${t('Photo','صورة')} ${i+1}"><img src="${src(g)}" alt=""></button>`).join('')}</div>` : ''}</div>
   <div class="body"><span class="kicker">${CATS[p.cat][lang==='ar'?1:0]}</span><h2 class="display">${t(p.fr,p.ar)}</h2><p class="lead">${t(p.dfr,p.dar)}</p>
   <div><p style="font-size:13px;font-weight:600;margin-bottom:8px">${t('Choisissez votre taille','اختر مقاسك')}</p><div class="sizes">${p.sizes.map(z=>`<button aria-pressed="false" data-z="${z}">${z}</button>`).join('')}</div></div>
   <p style="font-size:14px">${t('Prix sur WhatsApp. Essayage possible en boutique.','الثمن عبر واتساب. القياس ممكن في المتجر.')}</p>
   <div class="row"><a class="btn" id="qvwa" target="_blank" rel="noopener">${t('Commander sur WhatsApp','اطلب عبر واتساب')} ${ICON.arrow}</a><button class="btn alt" id="qvsave">${t('Ajouter à ma sélection','أضف إلى اختياراتي')}</button></div></div>`;
   const link = () => q.querySelector('#qvwa').href = wa(t(`Bonjour Modzak, je souhaite commander : ${p.fr}${size?` en taille ${size}`:''}. Quel est le prix ?`,`مرحباً مودزاك، أريد طلب ${p.ar}${size?` بمقاس ${size}`:''}. ما الثمن؟`));
   link();
+  q.querySelectorAll('[data-g]').forEach(b => b.onclick = () => { q.querySelector('#qvimg').src = src(b.dataset.g, 1); q.querySelectorAll('[data-g]').forEach(x => x.setAttribute('aria-pressed', x === b)) });
   q.querySelectorAll('[data-z]').forEach(b => b.onclick = () => { size = b.dataset.z; q.querySelectorAll('[data-z]').forEach(x => x.setAttribute('aria-pressed', x === b)); link() });
   q.querySelector('#qvsave').onclick = () => { sel = sel.filter(s => s.id !== id).concat({ id, size }); toast(t('Ajouté à votre sélection','أُضيف إلى اختياراتك')); saveSel(); closeLayers() };
   openLayer('qv');
@@ -133,7 +156,7 @@ function quickView(id) {
 /* carte produit réutilisable (accueil + collection) */
 function card(p) {
   return `<article class="product" data-cat="${p.cat}" data-id="${p.id}">
-    <div class="ph" data-qv="${p.id}" data-cursor="${t('Voir','عرض')}" role="button" tabindex="0" aria-label="${t('Aperçu','عرض')} ${t(p.fr,p.ar)}"><img loading="lazy" src="${IMG}${p.id}.jpg" alt="${t(p.fr,p.ar)}"></div>
+    <div class="ph" data-qv="${p.id}" data-cursor="${t('Voir','عرض')}" role="button" tabindex="0" aria-label="${t('Aperçu','عرض')} ${t(p.fr,p.ar)}"><img loading="lazy" src="${src(p.id)}" alt="${t(p.fr,p.ar)}"></div>
     <button class="save" data-id="${p.id}" aria-pressed="${isSaved(p.id)}" aria-label="${t('Ajouter à ma sélection','أضف إلى اختياراتي')}">${ICON.heart}</button>
     <h3>${t(p.fr,p.ar)}</h3><p class="meta">${CATS[p.cat][lang==='ar'?1:0]} · ${t('Prix sur WhatsApp','الثمن عبر واتساب')}</p>
     <div class="actions"><button data-qv="${p.id}">${t('Choisir la taille','اختر المقاس')}</button><a target="_blank" rel="noopener" href="${wa(t(`Bonjour Modzak, je suis intéressé par : ${p.fr}. Quel est le prix ?`,`مرحباً مودزاك، أنا مهتم بـ ${p.ar}. ما الثمن؟`))}">WhatsApp</a></div>
@@ -237,5 +260,5 @@ if (window.Lenis && !reduce) {
   else { const raf = time => { lenis.raf(time); requestAnimationFrame(raf) }; requestAnimationFrame(raf) }
 }
 
-window.MZ = { PRODUCTS, CATS, card, t, wa, lang: () => lang, quickView, ICON, IMG, reduce, toast, WA };
+window.MZ = { PRODUCTS, CATS, card, t, wa, lang: () => lang, quickView, ICON, IMG, src, reduce, toast, WA };
 })();
