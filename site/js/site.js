@@ -2,7 +2,8 @@
 (() => {
 const WA = '212629942924';
 const IMG = '../assets/ig/';
-const src = (id, big) => id[0] === 'c' ? `../assets/client/${id}${big ? '' : '-s'}.jpg` : `${IMG}${id}.jpg`;
+const DIR = { c: '../assets/client/', s: '../assets/shop/' };
+const src = (id, big) => DIR[id[0]] ? `${DIR[id[0]]}${id}${big ? '' : '-s'}.jpg` : `${IMG}${id}.jpg`;
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const store = {
   get(k, d) { try { return JSON.parse(localStorage.getItem(k)) ?? d } catch { return d } },
@@ -43,7 +44,11 @@ const PRODUCTS = [
   { id:'p5',  cat:'pantalons',  fr:'Pantalon taille haute', ar:'سروال خصر عالٍ',   dfr:'Pinces et pattes de serrage. Tombé net.', dar:'بثنيات وأبازيم جانبية.', sizes:[38,40,42,44,46] },
   { id:'p8',  cat:'chaussures', fr:'Sandales cuir',         ar:'صندل جلد',         dfr:'Cuir, semelle confort. Livrées en boîte.', dar:'جلد ونعل مريح.', sizes:[40,41,42,43,44,45] }
 ];
-const CATS = { all:['Tout','الكل'], costumes:['Costumes','بدلات'], chemises:['Chemises','قمصان'], polos:['Polos','بولو'], pantalons:['Pantalons','سراويل'], chaussures:['Chaussures','أحذية'] };
+/* photos boutique (js/products.js) + sous-catégories des pièces existantes */
+const SUB = { p6:'rayees', p10:'unies', p7:'polos', c01:'mocassins', c03:'mocassins', c04:'mocassins', c09:'mocassins', c10:'mocassins', p8:'mules' };
+PRODUCTS.forEach(p => { if (p.cat === 'polos') p.cat = 'mailles'; if (SUB[p.id]) p.sub = SUB[p.id]; else if (p.cat === 'chaussures' && p.id[0] === 'c') p.sub = 'habillees' });
+if (Array.isArray(window.MZ_SHOP)) PRODUCTS.push(...window.MZ_SHOP.filter(p => p && /^s\d{3}$/.test(p.id)));
+const CATS = { all:['Tout','الكل'], costumes:['Costumes','بدلات'], vestes:['Vestes','سترات وجاكيتات'], chemises:['Chemises','قمصان'], mailles:['Pulls et polos','كنزات وبولو'], pantalons:['Pantalons','سراويل'], chaussures:['Chaussures','أحذية'] };
 
 let lang = store.get('mz-lang', 'fr') === 'ar' ? 'ar' : 'fr';
 let lenis = null;

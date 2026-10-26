@@ -192,3 +192,6 @@ h1,h2,h3,h4,p{margin:0}
 @media(max-width:380px){.brand{font-size:19px;letter-spacing:.14em}.brand small{font-size:7.5px}}
 .menu a{padding:10px 0}
 .drawer .empty a{display:inline-block;padding:10px 0}
+/* photos boutique sur fond blanc : affichées entières */
+.product[data-id^="s"] .ph{background:#fff}
+.product[data-id^="s"] .ph img{object-fit:contain}
