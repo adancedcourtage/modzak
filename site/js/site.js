@@ -48,6 +48,9 @@ const PRODUCTS = [
 const SUB = { p6:'rayees', p10:'unies', p7:'polos', c01:'mocassins', c03:'mocassins', c04:'mocassins', c09:'mocassins', c10:'mocassins', p8:'mules' };
 PRODUCTS.forEach(p => { if (p.cat === 'polos') p.cat = 'mailles'; if (SUB[p.id]) p.sub = SUB[p.id]; else if (p.cat === 'chaussures' && p.id[0] === 'c') p.sub = 'habillees' });
 if (Array.isArray(window.MZ_SHOP)) PRODUCTS.push(...window.MZ_SHOP.filter(p => p && /^s\d{3}$/.test(p.id)));
+/* grille homogène : photos boutique d'abord, puis photos client, puis Instagram */
+const ORDER = { s: 0, c: 1, p: 2 };
+PRODUCTS.sort((a, b) => (ORDER[a.id[0]] ?? 3) - (ORDER[b.id[0]] ?? 3));
 const CATS = { all:['Tout','الكل'], costumes:['Costumes','بدلات'], vestes:['Vestes','سترات وجاكيتات'], chemises:['Chemises','قمصان'], mailles:['Pulls et polos','كنزات وبولو'], pantalons:['Pantalons','سراويل'], chaussures:['Chaussures','أحذية'] };
 
 let lang = store.get('mz-lang', 'fr') === 'ar' ? 'ar' : 'fr';
