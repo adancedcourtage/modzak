@@ -110,11 +110,16 @@ MERGE = [
 ]
 # --- Vignette : même type de photo par catégorie ---
 PLIEE = set('s073 s169 s006 s160 s090 s178 s208 s027 s127 s066 s109 s167 s048 s113 s148 s026 s145 s215 s187 s013 s086 s044 s011 s046 s146 s009 s114 s082 s110 s162 s033 s186'.split())
-PAIRE = set('s172 s056 s016 s081 s141 s125 s133 s207 s049 s037 s224 s072 s147 s144 s176 s134 s149 s007 s064 s219 s029 s112 s092'.split())
+PAIRE = set('s207 s081 s007 s037 s172 s133 s147 s005 s064 s016 s029 s144 s056 s141 s224 s219 s149 s049 s134 s125 s210 s158 s176'.split())
 PROFIL = set('s019 s028 s129 s151 s168 s206 s222 s175 s087 s131'.split())   # mannequins de profil
+NONPORTE = PLIEE | {'s111','s034'}   # vêtement sans mannequin ni modèle
 GROS_PLAN = set('s191 s200 s142 s223 s085 s052'.split())
+def ok_cover(i, cat):
+    # règle du client : vêtement porté (mannequin/modèle) ; chaussures en paire
+    return i in PAIRE if cat == 'chaussures' else i not in NONPORTE
 def rank(i, cat):
-    if cat == 'chemises': return 1 if i in PLIEE else 0          # portée d'abord
+    if not ok_cover(i, cat): return 9
+    if cat == 'chemises': return 0
     if cat == 'chaussures': return 0 if i in PAIRE else 1        # paire d'abord
     if cat == 'costumes': return 2 if i in PROFIL else 1 if i in GROS_PLAN else 0  # face entière d'abord
     return 0
@@ -134,8 +139,9 @@ for views,t,c in P:
       'fr':f"{fr} {col[GI[g]]}", 'ar':(f"{ar} {col[4]}" if col[4].startswith(('بمربعات','بخطوط')) else f"{ar} بلون {col[4]}"), 'color':col[0],
       'dfr':'Disponible en boutique à Mohammedia. Tailles et prix sur WhatsApp.',
       'dar':'متوفر في متجرنا بالمحمدية. المقاسات والثمن عبر واتساب.','sizes':SZ[sz]})
-# chemises sans photo portée : en fin de liste pour garder une grille homogène
-out.sort(key=lambda p: p['cat']=='chemises' and p['id'] in PLIEE)
+for p_ in out:
+    if not ok_cover(p_['id'], p_['cat']): p_['hidden']=True
+print('masqués',[p_['id'] for p_ in out if p_.get('hidden')])
 allids={f's{i:03d}' for i in range(1,226)}
 print('produits',len(out),'photos utilisées',len(used),'non utilisées',sorted(allids-used))
 js='/* Catalogue boutique (photos du client) — généré par assets/shop/catalog.py */\nwindow.MZ_SHOP = '+json.dumps([{k:v for k,v in p.items() if v is not None} for p in out],ensure_ascii=False,separators=(',',':'))+';\n'

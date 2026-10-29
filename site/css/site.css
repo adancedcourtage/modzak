@@ -195,3 +195,6 @@ h1,h2,h3,h4,p{margin:0}
 /* photos boutique sur fond blanc : affichées entières */
 .product[data-id^="s"] .ph{background:#fff}
 .product[data-id^="s"] .ph img{object-fit:contain}
+/* chaussures du client : vue en paire (paysage) affichée entière */
+.product[data-cat="chaussures"][data-id^="c"] .ph{background:#ebe5d8}
+.product[data-cat="chaussures"][data-id^="c"] .ph img{object-fit:contain}

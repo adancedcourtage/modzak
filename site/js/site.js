@@ -49,6 +49,10 @@ const SUB = { p6:'rayees', p10:'unies', p7:'polos', c01:'mocassins', c03:'mocass
 PRODUCTS.forEach(p => { if (p.cat === 'polos') p.cat = 'mailles'; if (SUB[p.id]) p.sub = SUB[p.id]; else if (p.cat === 'chaussures' && p.id[0] === 'c') p.sub = 'habillees' });
 if (Array.isArray(window.MZ_SHOP)) PRODUCTS.push(...window.MZ_SHOP.filter(p => p && /^s\d{3}$/.test(p.id)));
 /* grille homogène : photos boutique d'abord, puis photos client, puis Instagram */
+/* règle du client : photo principale portée (mannequin/modèle) ou chaussures en paire ;
+   les fiches sans photo conforme restent dans les données mais ne sont pas affichées */
+const HIDE = new Set(['p6','p10','p7','p4']);
+for (let i = PRODUCTS.length - 1; i >= 0; i--) if (PRODUCTS[i].hidden || HIDE.has(PRODUCTS[i].id)) PRODUCTS.splice(i, 1);
 const ORDER = { s: 0, c: 1, p: 2 };
 PRODUCTS.sort((a, b) => (ORDER[a.id[0]] ?? 3) - (ORDER[b.id[0]] ?? 3));
 const CATS = { all:['Tout','الكل'], costumes:['Costumes','بدلات'], vestes:['Vestes','سترات وجاكيتات'], chemises:['Chemises','قمصان'], mailles:['Pulls et polos','كنزات وبولو'], pantalons:['Pantalons','سراويل'], chaussures:['Chaussures','أحذية'] };
