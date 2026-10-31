@@ -2,7 +2,7 @@
 (() => {
 const { PRODUCTS, card } = MZ;
 const featured = () => document.getElementById('featured').innerHTML = ['c27','c01','c29','c16'].map(id => card(PRODUCTS.find(p => p.id === id))).join('');
-document.getElementById('strip').innerHTML = ['p4','p10','p7','p9','p5','p3'].map(i => `<a href="https://www.instagram.com/modzak.m/" target="_blank" rel="noopener" aria-label="Instagram"><img loading="lazy" src="../assets/ig/${i}.jpg" alt=""></a>`).join('');
+document.getElementById('strip').innerHTML = ['p4','p10','p7','p9','p5','p3'].map(i => `<a href="https://www.instagram.com/modzak.m/" target="_blank" rel="noopener" aria-label="Instagram"><img loading="lazy" src="assets/ig/${i}.jpg" alt=""></a>`).join('');
 featured();
 document.addEventListener('mz:lang', featured);
 

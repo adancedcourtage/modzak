@@ -90,7 +90,7 @@ footer{padding:40px 0 100px;text-align:center;color:var(--mute);font-size:13px}
 <body>
 <div class="bar" data-i="bar">Livraison partout au Maroc · Essayage en boutique à Mohammedia</div>
 <header><div class="wrap nav">
-  <a class="logo" href="#"><img src="assets/ig/p0.jpg" alt="Logo Modzak">MODZAK</a>
+  <a class="logo" href="#"><img src="../assets/ig/p0.jpg" alt="Logo Modzak">MODZAK</a>
   <nav class="links"><a href="#look" data-i="n1">Lookbook</a><a href="#compose" data-i="n2">Composer ma tenue</a><a href="#infos" data-i="n3">Boutique & horaires</a></nav>
   <button class="lang" id="lang">العربية</button>
 </div></header>
@@ -103,8 +103,8 @@ footer{padding:40px 0 100px;text-align:center;color:var(--mute);font-size:13px}
     <div class="cta"><a class="btn" href="#compose" data-i="h3">Composer ma tenue</a><a class="btn line" href="#look" data-i="h4">Voir le lookbook</a></div>
   </div>
   <div class="stack">
-    <div class="a"><img src="assets/ig/p11.jpg" alt="Costume Modzak"></div>
-    <div class="b"><img src="assets/ig/p1.jpg" alt="Façade boutique Modzak"></div>
+    <div class="a"><img src="../assets/ig/p11.jpg" alt="Costume Modzak"></div>
+    <div class="b"><img src="../assets/ig/p1.jpg" alt="Façade boutique Modzak"></div>
     <div class="badge"><b>5,0 ★</b><br><span data-i="h5">Note Google</span></div>
   </div>
 </div>
@@ -148,11 +148,11 @@ const S=[
  {k:'Chaussures',ka:'الحذاء',o:[['p8','Sandales cuir'],['p1','Derby ou mocassins (en boutique)']]}
 ];
 const sel=[0,0,0];
-function rail(){document.getElementById('rail').innerHTML=L.map(x=>`<div class="it"><div class="ph"><img loading="lazy" src="assets/ig/${x[0]}.jpg" alt="${x[2]}"></div><div class="tx"><small>${x[1]}</small><h3>${x[2]}</h3><a target="_blank" href="${wa('Bonjour Modzak, je veux des infos sur : '+x[2])}">${ar?'اطلب عبر واتساب ←':'Commander sur WhatsApp →'}</a></div></div>`).join('')}
+function rail(){document.getElementById('rail').innerHTML=L.map(x=>`<div class="it"><div class="ph"><img loading="lazy" src="../assets/ig/${x[0]}.jpg" alt="${x[2]}"></div><div class="tx"><small>${x[1]}</small><h3>${x[2]}</h3><a target="_blank" href="${wa('Bonjour Modzak, je veux des infos sur : '+x[2])}">${ar?'اطلب عبر واتساب ←':'Commander sur WhatsApp →'}</a></div></div>`).join('')}
 function comp(){
- steps.innerHTML=S.map((s,i)=>`<div class="step"><h4>${i+1}. ${ar?s.ka:s.k}</h4><div class="opts">${s.o.map((o,j)=>`<div class="opt ${sel[i]==j?'on':''}" data-s="${i}" data-j="${j}"><img src="assets/ig/${o[0]}.jpg" alt="">${o[1]}</div>`).join('')}</div></div>`).join('')
+ steps.innerHTML=S.map((s,i)=>`<div class="step"><h4>${i+1}. ${ar?s.ka:s.k}</h4><div class="opts">${s.o.map((o,j)=>`<div class="opt ${sel[i]==j?'on':''}" data-s="${i}" data-j="${j}"><img src="../assets/ig/${o[0]}.jpg" alt="">${o[1]}</div>`).join('')}</div></div>`).join('')
   +`<div class="step"><h4>4. ${ar?'المقاس':'Taille'}</h4><div class="opts">${[46,48,50,52,54,56].map(t=>`<div class="opt ${t==size?'on':''}" data-t="${t}" style="padding:8px 16px">${t}</div>`).join('')}</div></div>`;
- thumbs.innerHTML=S.map((s,i)=>`<div><img src="assets/ig/${s.o[sel[i]][0]}.jpg" alt=""></div>`).join('');
+ thumbs.innerHTML=S.map((s,i)=>`<div><img src="../assets/ig/${s.o[sel[i]][0]}.jpg" alt=""></div>`).join('');
  sum.innerHTML=S.map((s,i)=>`<li><span>${ar?s.ka:s.k}</span><span>${s.o[sel[i]][1]}</span></li>`).join('')+`<li><span>${ar?'المقاس':'Taille'}</span><span>${size}</span></li><li><span>${ar?'الثمن':'Prix'}</span><span>${ar?'عبر واتساب':'Sur WhatsApp'}</span></li>`;
  send.href=wa('Bonjour Modzak, voici ma tenue :\n'+S.map((s,i)=>`- ${s.k} : ${s.o[sel[i]][1]}`).join('\n')+`\n- Taille : ${size}\nPouvez-vous me donner le prix et la disponibilité ?`);
 }

@@ -1,8 +1,8 @@
 /* Modzak — script commun : en-tête, pied, langue, sélection WhatsApp, aperçu, transitions */
 (() => {
 const WA = '212629942924';
-const IMG = '../assets/ig/';
-const DIR = { c: '../assets/client/', s: '../assets/shop/' };
+const IMG = 'assets/ig/';
+const DIR = { c: 'assets/client/', s: 'assets/shop/' };
 const src = (id, big) => DIR[id[0]] ? `${DIR[id[0]]}${id}${big ? '' : '-s'}.jpg` : `${IMG}${id}.jpg`;
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const store = {

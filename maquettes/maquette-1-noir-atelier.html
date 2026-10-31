@@ -102,7 +102,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 </div></header>
 
 <section class="hero" style="padding:0">
-  <img src="assets/ig/p12.jpg" alt="Smoking noir Modzak">
+  <img src="../assets/ig/p12.jpg" alt="Smoking noir Modzak">
   <div class="wrap">
     <div class="eyebrow" data-i="h0">Mohammedia · Central Park</div>
     <h1 data-i="h1">Your way<br>into <i>elegance</i></h1>
@@ -121,11 +121,11 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 <section id="univers"><div class="wrap">
   <div class="head rv"><div><div class="eyebrow" data-i="u0">Nos univers</div><h2 data-i="u1">Tout le vestiaire masculin</h2></div></div>
   <div class="univ rv">
-    <a class="card big" href="#catalogue" data-f="costumes"><img src="assets/ig/p2.jpg" alt=""><div class="lab"><h3 data-i="c1">Costumes & smokings</h3><span data-i="c1s">Cérémonie · Mariage · Bureau</span></div></a>
-    <a class="card" href="#catalogue" data-f="chemises"><img src="assets/ig/p10.jpg" alt=""><div class="lab"><h3 data-i="c2">Chemises</h3><span>→</span></div></a>
-    <a class="card" href="#catalogue" data-f="polos"><img src="assets/ig/p7.jpg" alt=""><div class="lab"><h3 data-i="c3">Polos</h3><span>→</span></div></a>
-    <a class="card" href="#catalogue" data-f="pantalons"><img src="assets/ig/p5.jpg" alt=""><div class="lab"><h3 data-i="c4">Pantalons</h3><span>→</span></div></a>
-    <a class="card" href="#catalogue" data-f="chaussures"><img src="assets/ig/p8.jpg" alt=""><div class="lab"><h3 data-i="c5">Chaussures</h3><span>→</span></div></a>
+    <a class="card big" href="#catalogue" data-f="costumes"><img src="../assets/ig/p2.jpg" alt=""><div class="lab"><h3 data-i="c1">Costumes & smokings</h3><span data-i="c1s">Cérémonie · Mariage · Bureau</span></div></a>
+    <a class="card" href="#catalogue" data-f="chemises"><img src="../assets/ig/p10.jpg" alt=""><div class="lab"><h3 data-i="c2">Chemises</h3><span>→</span></div></a>
+    <a class="card" href="#catalogue" data-f="polos"><img src="../assets/ig/p7.jpg" alt=""><div class="lab"><h3 data-i="c3">Polos</h3><span>→</span></div></a>
+    <a class="card" href="#catalogue" data-f="pantalons"><img src="../assets/ig/p5.jpg" alt=""><div class="lab"><h3 data-i="c4">Pantalons</h3><span>→</span></div></a>
+    <a class="card" href="#catalogue" data-f="chaussures"><img src="../assets/ig/p8.jpg" alt=""><div class="lab"><h3 data-i="c5">Chaussures</h3><span>→</span></div></a>
   </div>
 </div></section>
 
@@ -136,7 +136,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 </div></section>
 
 <section id="mariage" class="mar"><div class="wrap">
-  <div class="pic rv"><img src="assets/ig/p3.jpg" alt="Smoking pailleté"></div>
+  <div class="pic rv"><img src="../assets/ig/p3.jpg" alt="Smoking pailleté"></div>
   <div class="rv">
     <div class="eyebrow" data-i="m0">Le grand jour</div>
     <h2 class="serif" style="font-size:clamp(36px,5vw,56px);line-height:1" data-i="m1">Votre costume de mariage, ajusté pour vous</h2>
@@ -186,7 +186,7 @@ const CAT={all:['Tout','الكل'],costumes:['Costumes','بدلات'],chemises:[
 let ar=false,cur='all';
 function render(){
  filters.innerHTML=Object.keys(CAT).map(k=>`<button class="${k==cur?'on':''}" data-k="${k}">${CAT[k][+ar]}</button>`).join('');
- grid.innerHTML=P.filter(p=>cur=='all'||p[0]==cur).map(p=>`<div class="prod"><div class="ph"><img loading="lazy" src="assets/ig/${p[1]}.jpg" alt="${p[2]}"></div><h4>${p[2]}</h4><p>${p[3]} · ${ar?'السعر عبر واتساب':'Prix sur WhatsApp'}</p><a href="${wa('Bonjour Modzak, je suis intéressé par : '+p[2])}" target="_blank">${ar?'اطلب عبر واتساب':'Commander sur WhatsApp'} →</a></div>`).join('');
+ grid.innerHTML=P.filter(p=>cur=='all'||p[0]==cur).map(p=>`<div class="prod"><div class="ph"><img loading="lazy" src="../assets/ig/${p[1]}.jpg" alt="${p[2]}"></div><h4>${p[2]}</h4><p>${p[3]} · ${ar?'السعر عبر واتساب':'Prix sur WhatsApp'}</p><a href="${wa('Bonjour Modzak, je suis intéressé par : '+p[2])}" target="_blank">${ar?'اطلب عبر واتساب':'Commander sur WhatsApp'} →</a></div>`).join('');
 }
 filters.onclick=e=>{if(e.target.dataset.k){cur=e.target.dataset.k;render()}};
 document.querySelectorAll('[data-f]').forEach(a=>a.onclick=()=>{cur=a.dataset.f;render()});

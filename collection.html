@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ https://cdn.jsdelivr.net/npm/lenis@1.1.13/; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; frame-src https://maps.google.com https://www.google.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://wa.me; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="icon" type="image/png" sizes="48x48" href="favicon.png"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="manifest" href="site.webmanifest">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Collection · Modzak Mohammedia</title>
+<meta property="og:type" content="website"><meta property="og:site_name" content="Modzak"><meta property="og:locale" content="fr_MA">
+<meta property="og:title" content="Collection · Modzak Mohammedia"><meta property="og:description" content="Costumes, smokings, chemises, polos, pantalons et chaussures homme chez Modzak à Mohammedia. Choisissez votre taille et commandez sur WhatsApp.">
+<meta property="og:url" content="https://modzak.com/collection.html"><meta property="og:image" content="https://modzak.com/assets/client/c27.jpg">
+<meta name="twitter:card" content="summary_large_image"><link rel="canonical" href="https://modzak.com/collection.html">
+<meta name="description" content="Costumes, smokings, chemises, polos, pantalons et chaussures homme chez Modzak à Mohammedia. Choisissez votre taille et commandez sur WhatsApp.">
+<meta name="theme-color" content="#f3efe5">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;600;700&family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css?v=12">
+<style>
+.intro{padding:150px var(--pad) 40px;display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:end;max-width:1440px;margin:auto}
+.intro h1{font-size:clamp(64px,10vw,170px)}
+.intro h1 .sig{display:block;font-size:.5em;color:var(--olive-deep)}
+@media(max-width:860px){.intro{grid-template-columns:1fr;padding-top:120px}}
+
+.bar{position:sticky;top:76px;z-index:20;background:var(--paper);border-block:1px solid var(--ink);transition:top .5s var(--ease)}
+.hd-hidden .bar{top:0}
+.bar .wrap{display:flex;align-items:center;gap:20px;justify-content:space-between;min-height:64px}
+.tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;position:relative}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{position:relative;z-index:1;padding:10px 16px;font-size:14px;font-weight:500;white-space:nowrap;transition:color .3s}
+.tabs button[aria-pressed=true]{color:var(--paper)}
+.tabs .ink{position:absolute;top:0;bottom:0;left:0;background:var(--ink);transition:transform .5s var(--ease),width .5s var(--ease)}
+.tabs sup{font-size:10px;margin-inline-start:3px;opacity:.6}
+.find{display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--ink);min-width:220px}
+.find input{border:0;background:none;padding:8px 0;font-size:14px;width:100%}
+@media(max-width:700px){.bar .wrap{flex-direction:column;align-items:stretch;gap:8px;padding-block:10px}.find{min-width:0}}
+
+.catalog{padding:44px var(--pad) 120px;max-width:1440px;margin:auto}
+.product.out{display:none}
+.bar .subfilters{justify-content:flex-start;min-height:0;gap:8px;padding-block:10px;overflow-x:auto}
+.bar .subfilters[hidden],.more[hidden]{display:none}
+.subfilters button{flex-shrink:0;border:1px solid var(--ink);border-radius:999px;padding:7px 14px;font-size:13px;white-space:nowrap}
+.subfilters button[aria-pressed=true]{background:var(--ink);color:var(--paper)}
+.more{display:block;margin:36px auto 0;border:1px solid var(--ink);padding:14px 28px}
+@media(max-width:700px){.bar .subfilters{flex-direction:row;align-items:center}}
+
+.none{padding:60px 0;font-size:18px;color:var(--muted)}
+.none button{color:var(--ink);text-decoration:underline}
+
+.help{background:var(--olive);border-block:1px solid var(--ink);padding:clamp(50px,7vw,90px) 0}
+.help .wrap{display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap}
+.help h2{font-size:clamp(38px,5vw,74px);max-width:16ch}
+</style>
+
+</head>
+<body data-page="collection">
+<main>
+  <section class="intro">
+    <h1 class="display" data-split data-fr="La collection <span class='sig'>du vestiaire masculin</span>" data-ar="المجموعة <span class='sig'>لخزانة الرجل</span>">La collection <span class="sig">du vestiaire masculin</span></h1>
+    <p class="lead" data-fr="Touchez une photo pour voir la pièce et choisir votre taille. Le cœur l’ajoute à votre sélection, que vous envoyez en un message WhatsApp." data-ar="اضغط على الصورة لرؤية القطعة واختيار مقاسك. القلب يضيفها إلى اختياراتك التي ترسلها في رسالة واتساب واحدة.">Touchez une photo pour voir la pièce et choisir votre taille. Le cœur l’ajoute à votre sélection, que vous envoyez en un message WhatsApp.</p>
+  </section>
+
+  <div class="bar"><div class="wrap">
+    <div class="tabs" id="tabs" role="group" aria-label="Catégories" data-al-fr="Catégories" data-al-ar="الفئات"><span class="ink" id="ink"></span></div>
+    <label class="find"><span class="sr" data-fr="Rechercher une pièce" data-ar="ابحث عن قطعة">Rechercher une pièce</span><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="m11 11 4 4" stroke="currentColor" stroke-width="1.5"/></svg><input id="q" type="search" data-ph-fr="Smoking, chemise, sandales…" data-ph-ar="سموكينغ، قميص، صندل…" placeholder="Smoking, chemise, sandales…"></label>
+  </div><div class="subfilters wrap" id="subfilters" role="group" aria-label="Sous-catégories" data-al-fr="Sous-catégories" data-al-ar="الفئات الفرعية" hidden></div></div>
+
+  <section class="catalog">
+    <h2 class="sr" data-fr="Les pièces" data-ar="القطع">Les pièces</h2>
+    <div class="products" id="grid" aria-live="polite"></div>
+    <button class="more" id="more" type="button" hidden></button>
+    <p class="none" id="none" hidden></p>
+  </section>
+
+  <section class="help"><div class="wrap">
+    <h2 class="display" data-fr="Vous ne trouvez pas votre pièce ?" data-ar="لم تجد القطعة التي تبحث عنها؟">Vous ne trouvez pas votre pièce ?</h2>
+    <a class="btn" data-magnet target="_blank" rel="noopener" href="https://wa.me/212629942924?text=Bonjour%20Modzak%2C%20je%20cherche%20%3A%20" data-fr="Décrivez-la sur WhatsApp" data-ar="صِفها لنا عبر واتساب">Décrivez-la sur WhatsApp</a>
+  </div></section>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" integrity="sha384-B2WBjDzEjJpYvhmi2UyEn7rektqkf5suS6sNoyyrf0EBAwBHdkiXxIlU0V5Ru2ed" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="js/products.js?v=12"></script>
+<script src="js/site.js?v=12"></script>
+<script src="js/collection.js?v=12"></script>
+</body>
+</html>
