@@ -198,3 +198,7 @@ h1,h2,h3,h4,p{margin:0}
 /* chaussures du client : vue en paire (paysage) affichée entière */
 .product[data-cat="chaussures"][data-id^="c"] .ph{background:#ebe5d8}
 .product[data-cat="chaussures"][data-id^="c"] .ph img{object-fit:contain}
+
+/* prix affiché (fiches avec un prix fourni par le client) */
+.product .meta .price{color:var(--ink);font-weight:700}
+.qv p.price{margin:0;font-size:24px;font-weight:700;color:var(--ink)}

@@ -10,7 +10,8 @@ const store = {
   set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)) } catch {} }
 };
 
-/* Catalogue : pas de prix, ils sont donnés sur WhatsApp */
+/* Catalogue : prix donnés sur WhatsApp, sauf les fiches qui ont un champ price (en DH, fourni par le client) */
+const priceTxt = p => `${p.price} ${t('DH','درهم')}`;
 const PRODUCTS = [
   { id:'c27', cat:'costumes', gal:['c27','c31','c19'], fr:'Costume bleu roi', ar:'بدلة زرقاء ملكية', dfr:'Veste deux boutons, pochette blanche. Une couleur qui se remarque, pour les fêtes et les cérémonies.', dar:'سترة بزرين ومنديل أبيض. لون لافت للحفلات والمناسبات.', sizes:[46,48,50,52,54,56] },
   { id:'c21', cat:'costumes', gal:['c21','c24','c30'], fr:'Costume bleu marine', ar:'بدلة كحلية', dfr:'Le costume qui va partout : bureau, réunion, mariage d’un ami.', dar:'البدلة التي تصلح لكل مكان: العمل، الاجتماعات، أعراس الأصدقاء.', sizes:[46,48,50,52,54,56] },
@@ -159,9 +160,11 @@ function quickView(id) {
   <div class="pic"><img id="qvimg" src="${src(p.id,1)}" alt="${t(p.fr,p.ar)}">${p.gal ? `<div class="thumbs" role="group" aria-label="${t('Photos','الصور')}">${p.gal.map((g,i)=>`<button data-g="${g}" aria-pressed="${i===0}" aria-label="${t('Photo','صورة')} ${i+1}"><img src="${src(g)}" alt=""></button>`).join('')}</div>` : ''}</div>
   <div class="body"><span class="kicker">${CATS[p.cat][lang==='ar'?1:0]}</span><h2 class="display" id="qvt">${t(p.fr,p.ar)}</h2><p class="lead">${t(p.dfr,p.dar)}</p>
   <div><p style="font-size:13px;font-weight:600;margin-bottom:8px">${t('Choisissez votre taille','اختر مقاسك')}</p><div class="sizes">${p.sizes.map(z=>`<button aria-pressed="false" data-z="${z}">${z}</button>`).join('')}</div></div>
-  <p style="font-size:14px">${t('Prix sur WhatsApp. Essayage possible en boutique.','الثمن عبر واتساب. القياس ممكن في المتجر.')}</p>
+  ${p.price ? `<p class="price">${priceTxt(p)}</p><p style="font-size:14px">${t('Essayage possible en boutique.','القياس ممكن في المتجر.')}</p>` : `<p style="font-size:14px">${t('Prix sur WhatsApp. Essayage possible en boutique.','الثمن عبر واتساب. القياس ممكن في المتجر.')}</p>`}
   <div class="row"><a class="btn" id="qvwa" target="_blank" rel="noopener">${t('Commander sur WhatsApp','اطلب عبر واتساب')} ${ICON.arrow}</a><button class="btn alt" id="qvsave">${t('Ajouter à ma sélection','أضف إلى اختياراتي')}</button></div></div>`;
-  const link = () => q.querySelector('#qvwa').href = wa(t(`Bonjour Modzak, je souhaite commander : ${p.fr}${size?` en taille ${size}`:''}. Quel est le prix ?`,`مرحباً مودزاك، أريد طلب ${p.ar}${size?` بمقاس ${size}`:''}. ما الثمن؟`));
+  const link = () => q.querySelector('#qvwa').href = wa(p.price
+    ? t(`Bonjour Modzak, je souhaite commander : ${p.fr}${size?` en taille ${size}`:''} (${p.price} DH). Est-il disponible ?`,`مرحباً مودزاك، أريد طلب ${p.ar}${size?` بمقاس ${size}`:''} (${p.price} درهم). هل هو متوفر؟`)
+    : t(`Bonjour Modzak, je souhaite commander : ${p.fr}${size?` en taille ${size}`:''}. Quel est le prix ?`,`مرحباً مودزاك، أريد طلب ${p.ar}${size?` بمقاس ${size}`:''}. ما الثمن؟`));
   link();
   q.querySelectorAll('[data-g]').forEach(b => b.onclick = () => { q.querySelector('#qvimg').src = src(b.dataset.g, 1); q.querySelectorAll('[data-g]').forEach(x => x.setAttribute('aria-pressed', x === b)) });
   q.querySelectorAll('[data-z]').forEach(b => b.onclick = () => { size = b.dataset.z; q.querySelectorAll('[data-z]').forEach(x => x.setAttribute('aria-pressed', x === b)); link() });
@@ -174,8 +177,8 @@ function card(p) {
   return `<article class="product" data-cat="${p.cat}" data-id="${p.id}">
     <div class="ph" data-qv="${p.id}" data-cursor="${t('Voir','عرض')}" role="button" tabindex="0" aria-label="${t('Aperçu','عرض')} ${t(p.fr,p.ar)}"><img loading="lazy" src="${src(p.id)}" alt="${t(p.fr,p.ar)}"></div>
     <button class="save" data-id="${p.id}" aria-pressed="${isSaved(p.id)}" aria-label="${t('Ajouter à ma sélection','أضف إلى اختياراتي')}">${ICON.heart}</button>
-    <h3>${t(p.fr,p.ar)}</h3><p class="meta">${CATS[p.cat][lang==='ar'?1:0]} · ${t('Prix sur WhatsApp','الثمن عبر واتساب')}</p>
-    <div class="actions"><button data-qv="${p.id}">${t('Choisir la taille','اختر المقاس')}</button><a target="_blank" rel="noopener" href="${wa(t(`Bonjour Modzak, je suis intéressé par : ${p.fr}. Quel est le prix ?`,`مرحباً مودزاك، أنا مهتم بـ ${p.ar}. ما الثمن؟`))}">WhatsApp</a></div>
+    <h3>${t(p.fr,p.ar)}</h3><p class="meta">${CATS[p.cat][lang==='ar'?1:0]} · ${p.price ? `<b class="price">${priceTxt(p)}</b>` : t('Prix sur WhatsApp','الثمن عبر واتساب')}</p>
+    <div class="actions"><button data-qv="${p.id}">${t('Choisir la taille','اختر المقاس')}</button><a target="_blank" rel="noopener" href="${wa(p.price ? t(`Bonjour Modzak, je suis intéressé par : ${p.fr} (${p.price} DH). Est-il disponible ?`,`مرحباً مودزاك، أنا مهتم بـ ${p.ar} (${p.price} درهم). هل هو متوفر؟`) : t(`Bonjour Modzak, je suis intéressé par : ${p.fr}. Quel est le prix ?`,`مرحباً مودزاك، أنا مهتم بـ ${p.ar}. ما الثمن؟`))}">WhatsApp</a></div>
   </article>`;
 }
 
